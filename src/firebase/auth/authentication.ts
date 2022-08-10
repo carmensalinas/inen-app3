@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { getFirebaseApp } from "../config";
 import { createUserFields, UserFields } from "../database/users";
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 const auth = getAuth(getFirebaseApp());
 
@@ -14,6 +15,17 @@ export const loginApp = async (email:string,password:string):Promise<boolean>=>{
             resolve(false)
           });
     })
+}
+
+
+export class Logouth{
+  constructor(private authfirebase : AngularFireAuth){
+    
+  }
+  logouth(){
+    this.authfirebase.signOut();
+  }
+  
 }
 
 class UserCreateResponse{

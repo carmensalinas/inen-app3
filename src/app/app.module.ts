@@ -31,7 +31,12 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -68,14 +73,19 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideFunctions(() => getFunctions()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

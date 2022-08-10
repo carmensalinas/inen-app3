@@ -1,0 +1,113 @@
+<mat-toolbar>
+    <span>PACIENTE: Juan Perez</span>
+    <p></p>
+</mat-toolbar>
+<div class="container" style="padding-top: 30px;">
+    <h3>Registro de la ecografía prostática</h3>
+    <div class="row">
+        <div class="col-5">
+            <form  method="post">
+                <div class="form-group">
+                    <select type="select" formControlName="ecografia"  class="form-control">
+                        <option value="Value1">Ecografía Protática</option>
+                        <option value="value2" selected>Seleccione tipo ecografía</option>
+                        <option value="value3">Otras Ecografías</option>
+                    </select> 
+                </div>
+                <div class="form-group">
+                    <textarea name="textarea" rows="5" cols="50" class="form-control">Ingrese detalle de la ecografía</textarea>
+                </div>
+                <div class="form-group">
+                    <input  type="text" name="tituloEcografia" placeholder="Ingrese título de la ecografía" class="form-control" />
+                </div>
+            </form>
+        </div>
+        <div class="col-5">
+            <form  method="post">
+                <div class="form-group">
+                    <a href="https://curiosoando.com/wp-content/uploads/2014/08/ecografia_feto_doce_semanas.jpg">
+                        <img src="https://curiosoando.com/wp-content/uploads/2014/08/ecografia_feto_doce_semanas.jpg"
+                        width="190" height="150"
+                        alt="texto alternativo de la imagen" />
+                    </a>
+                    <p></p>
+                    <input  type="file" name="fotoPerfil" accept=".jpg,.png" />
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3 col-md-offset-9 text-right" >
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-default" style="background-color: hsla(202, 92%, 24%, 0.521); color: white;" type="button"><span class="glyphicon glyphicon-step-backward"></span>&nbsp;Registrar</button>
+                                <button class="btn btn-default" style="background-color: rgba(238, 167, 15, 0.932); color: white;" type="button">Cancelar&nbsp;<span class="glyphicon glyphicon-step-forward"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<mat-toolbar>
+    <span>Resultados del Radiólogo</span>
+    <p></p>
+</mat-toolbar>
+<div class="container" style="padding-top: 30px;">
+    <h5>Resultado de las Ecografías Registradas</h5>
+    <div class="row">
+        <div class="col-3">
+            <form  method="post">
+                <div class="form-group">
+                    <a href="https://curiosoando.com/wp-content/uploads/2014/08/ecografia_feto_doce_semanas.jpg">
+                        <img src="https://curiosoando.com/wp-content/uploads/2014/08/ecografia_feto_doce_semanas.jpg"
+                        width="190" height="150"
+                        alt="texto alternativo de la imagen" />
+                    </a>
+                    <h4>Próstata</h4>
+                    <h5>Ancho de la próstata</h5>
+                </div>
+            </form>
+        </div>
+        <div class="col-3">
+            <form  method="post">
+                <div class="form-group">
+                    <a href="https://curiosoando.com/wp-content/uploads/2014/08/ecografia_feto_doce_semanas.jpg">
+                        <img src="https://curiosoando.com/wp-content/uploads/2014/08/ecografia_feto_doce_semanas.jpg"
+                        width="190" height="150"
+                        alt="texto alternativo de la imagen" />
+                    </a>
+                    <h4>Próstata</h4>
+                    <h5>Alto de la próstata</h5>
+                </div>
+                
+            </form>
+        </div> 
+        <div class="col-3">
+            <form  method="post">
+                <div class="form-group">
+                    <a href="https://curiosoando.com/wp-content/uploads/2014/08/ecografia_feto_doce_semanas.jpg">
+                        <img src="https://curiosoando.com/wp-content/uploads/2014/08/ecografia_feto_doce_semanas.jpg"
+                        width="190" height="150"
+                        alt="texto alternativo de la imagen" />
+                    </a>
+                    <h4>Próstata</h4>
+                    <h5>Diámetro</h5>
+                </div>
+                
+            </form>
+        </div> 
+        <div class="col-3">
+            <form  method="post">
+                <div class="form-group">
+                    <a href="https://curiosoando.com/wp-content/uploads/2014/08/ecografia_feto_doce_semanas.jpg">
+                        <img src="https://curiosoando.com/wp-content/uploads/2014/08/ecografia_feto_doce_semanas.jpg"
+                        width="190" height="150"
+                        alt="texto alternativo de la imagen" />
+                    </a>
+                    <h4>Próstata</h4>
+                    <h5>...</h5>
+                </div>
+                
+            </form>
+        </div> 
+    </div>
+</div>

@@ -1,0 +1,104 @@
+<mat-toolbar>
+    <span>Registrar un nuevo paciente</span>
+    <p></p>
+</mat-toolbar>
+<form class="row">
+        <div class="input-group mb-3">
+            <div class="col-md-4">
+                <label for="" class="form-label">Tipo de Documento</label>
+                <select class="form-control" aria-label="Default select example">
+                    <option selected>Selecione el tipo de documento</option>
+                    <option value="1">DNI</option>
+                    <option value="2">Carnet de Extranjeria</option>
+                    <option value="3">Pasaporte</option>
+                  </select>
+            </div>
+            <div class="col-md-4">
+                <label for="numDocumento" class="form-label">N° de Identificación</label>
+                <input type="text" class="form-control" id="numDocumento" name="numDocumento">
+            </div>
+            <div class="col-md-4">
+                <label for="edad" class="form-label">Nombres</label>
+                <input type="number" class="form-control" id="edad" name="nombres">
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <div class="col-md-4">
+                <label for="radiologo" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" id="radiologo" name="apellidos">
+            </div>
+            <div class="col-md-4">
+                <label for="" class="form-label">Estado Civil</label>
+                <select class="form-control" aria-label="Default select example">
+                    <option selected>Selecione estado civil</option>
+                    <option value="1">Soltero</option>
+                    <option value="2">Casado</option>
+                    <option value="3">Conviviente</option>
+                    <option value="4">Viudo</option>
+                    <option value="5">Divorciado</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="telfijo" class="form-label">Teléfono Fijo</label>
+                <input type="tel" class="form-control" id="telfijo" name="telfijo">
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <div class="col-md-4">
+                <label for="telcel" class="form-label">Teléfono Celular</label>
+                <input type="tel" class="form-control" id="telcel" name="telcel">
+            </div>
+            <div class="col-md-4">
+                <label for="correo" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="correo" name="correo" placeholder="@">
+            </div>
+            <div class="col-md-4">
+                <label for="fecNacimiento" class="form-label">Fecha Nacimiento</label>
+                <input type="date" class="form-control" id="fecNacimiento" name="fecNacimiento">
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <div class="col-md-4">
+                <label for="ocupacion" class="form-label">Ocupación</label>
+                <input type="text" class="form-control" id="ocupacion" name="ocupacion">
+            </div>
+            <div class="col-md-4">
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="direccion" name="direccion">
+            </div>
+            <div class="col-md-4">
+                <label for="fecNacimiento" class="form-label">Distrito</label>
+                <select class="form-control" aria-label="Default select example">
+                    <option selected>Selecione distrto</option>
+                    <option value="1">Cercado de Lima</option>
+                    <option value="2">Breña</option>
+                    <option value="3">Miraflores</option>
+                    <option value="4">San Borja</option>
+                    <option value="5">Ventanilla</option>
+                </select>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <div class="col-md-4">
+                <label for="formFile" class="form-label">Foto del paciente</label>
+                <input class="form-control" type="file" id="formFile" name="formFile">
+            </div>
+            <div class="col-md-8">
+
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+
+            </div>            
+            <div class="col-md-2">
+                <button type="button" class="btn btn-success">Registrar</button>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-danger">Cancelar</button>
+            </div>
+        </div>
+</form>

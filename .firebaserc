@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "inen-app": {
+      "hosting": {
+        "inen-app": [
+          "inen-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "inen-app"
+  }
+}

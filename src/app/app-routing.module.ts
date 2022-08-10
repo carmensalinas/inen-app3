@@ -27,7 +27,8 @@ const routes: Routes = [
   {path: 'lista-pacientes', component: ListaPacientesComponent},
   {path: 'nuevo-paciente', component: NuevoPacienteComponent},
   { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
-  { path: 'register', loadChildren: () => import('./auth/register/register.module').then(m => m.RegisterModule) }
+  { path: 'register', loadChildren: () => import('./auth/register/register.module').then(m => m.RegisterModule) },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({

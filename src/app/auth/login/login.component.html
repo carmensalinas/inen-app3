@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body text-center">
                 <h1>INGRESO</h1>
-                <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
                 <div class="form-group">
                     <input type="email" id="email" name="email" class="form-control" placeholder="Email" formControlName="email" required>
                 </div>

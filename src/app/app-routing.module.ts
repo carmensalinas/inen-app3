@@ -12,7 +12,7 @@ import { NuevoPacienteComponent } from './pages/pacientes/nuevo-paciente/nuevo-p
 import { EditarHistorialComponent } from './pages/historial/editar-historial/editar-historial.component';
 import { PasswordComponent } from './pages/password/password.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
-
+//Prueba
 const routes: Routes = [
   {path: 'directorio', component: DirectorioComponent},
   {path: 'password', component: PasswordComponent },

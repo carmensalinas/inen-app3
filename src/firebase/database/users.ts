@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { getDB } from "./config";
 
 // Add a new document in collection "cities"
@@ -8,13 +8,12 @@ export interface UserFields{
   password:string,
   nombres: string,
   apellidos: string,
-  birth_date:Date,
-  role_id:string,
+  rolCode:string,
   numeroColegiatura : number,
   tipoDocumento: string,
   numDocumento : number,
   edad : number,
-  sexo : string,
+  tipoGenero : string,
   telfijo : number, 
   telcel : String, 
   direccion : String,
@@ -31,13 +30,12 @@ export const createUserFields = async(userFields: UserFields)=>{
       email:userFields.email,
       nombres:userFields.nombres || "",
       apellidos:userFields.apellidos || "",
-      birth_date:userFields.birth_date || "",
-      role_id:userFields.role_id|| "",
+      rolCode:userFields.rolCode|| "",
       numeroColegiatura : userFields.numeroColegiatura|| "",
       tipoDocumento : userFields.tipoDocumento|| "",
       numDocumento : userFields.numDocumento|| "",
       edad : userFields.edad|| "",
-      sexo : userFields.sexo|| "",
+      tipoGenero : userFields.tipoGenero|| "",
       telfijo :userFields.telfijo|| "", 
       telcel :userFields.telcel|| "",
       direccion :userFields.direccion|| "",
@@ -47,6 +45,19 @@ export const createUserFields = async(userFields: UserFields)=>{
       primerRegistro : 0,
     });
     return true
+  } catch (error) {
+    console.log(error);
+    return false
+  }
+}
+
+
+export const getUser = async (email:string)=>{
+  try {
+    const db = getDB()
+    const docRef = doc(db, "users", email);
+    const docSnap = await getDoc(docRef);
+    return docSnap.data()
   } catch (error) {
     console.log(error);
     return false

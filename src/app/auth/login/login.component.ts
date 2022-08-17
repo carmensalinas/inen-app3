@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     const {email, password} = this.loginForm.value
     const logged = await loginApp(email,password)
     if(logged){
+      console.log("user=>",logged.role)
       window.alert("Bienvenido")
       this.router.navigate(['/lista-pacientes'])
     }else{
@@ -29,4 +30,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
+ 
+
 }
+
+
+// export const prueba = async (a:string) =>{
+//   const logged = ''
+//   return 'd'
+// }

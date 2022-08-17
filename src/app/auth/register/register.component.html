@@ -30,14 +30,11 @@
                         </div>
                         <div class="input-group mb-3">
                             <div class="col-md-4">
-                                <label for="" class="form-group">Tipo de Documento</label>
-                                <select class="form-control" id="tipoDocumento" aria-label="Default select example">
-                                    <option selected formControlName="tipoDocumento">Selecione el tipo de documento</option>
-                                    <option value="1">DNI</option>
-                                    <option value="2">Carnet de Extranjeria</option>
-                                    <option value="3">Pasaporte</option>
+                                <label class="form-group">Tipo de Documento</label>
+                                <select formControlName="tipoDocumento" class="form-control" id="tipoDocumento" aria-label="Default select example">
+                                    <option selected value="">Selecione el tipo de documento</option>
+                                    <option *ngFor ="let tipodoc of tipoDocumentos" [value]="tipodoc">{{tipodoc}}</option>
                                 </select>
-                            
                             </div>
                             <div class="col-md-4">
                                 <label for="numDocumento" class="form-label">N° de Documento</label>
@@ -52,19 +49,15 @@
                             <div class="col-md-4">
                                 <label for="rol" class="form-label">Tipo de Usuario</label>
 
-                                <input   matInput  class="form-control" type="number" formControlName="rolCode" id="rolCode" name="rolCode"  value = "1" placeholder="Jefe de Radiología" readonly> 
+                                <input class="form-control" type="number" formControlName="rolCode" id="rolCode" name="rolCode" placeholder="Jefe de Radiología" readonly> 
                             </div>
+                           
                             <div class="col-md-4">
-                                <fieldset formControlName="sexo" id="sexo" formControlName="sexo">
-                                    <h4>Sexo:</h4>
-                                    <label>
-                                        <input type="radio" name="sexo" value="masculino"> Masculino  
-                                    </label>
-        
-                                    <label> 
-                                        <input type="radio" name="sexo" value="femenino"> Femenino
-                                    </label>
-                                </fieldset>
+                                <label class="form-group">Sexo</label>
+                                <select formControlName="tipoGenero" class="form-control" id="tipoGenero" aria-label="Default select example">
+                                    <option selected value="">Selecione el tipo de género</option>
+                                    <option *ngFor ="let genero of tipoGeneros" [value]="genero">{{genero}}</option>
+                                </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="telfijo" class="form-label">Teléfono Fijo</label>
@@ -96,15 +89,12 @@
                                 <input type="password" name="password" formControlName="password" id="password" placeholder="Ingrese contraseña" class="form-control">
                             </div>
                             <div class="col-md-4">
-                                <label for="fecNacimiento" class="form-label">Distrito</label>
-                                <select class="form-control" formControlName="fecNacimiento" name="fecNacimiento" aria-label="Default select example">
-                                    <option selected>Selecione distrto</option>
-                                    <option value="1">Cercado de Lima</option>
-                                    <option value="2">Breña</option>
-                                    <option value="3">Miraflores</option>
-                                    <option value="4">San Borja</option>
-                                    <option value="5">Ventanilla</option>
-                                </select>
+                                <label class="form-group">Distrito</label>
+                                    <select formControlName="distrito" class="form-control" id="distrito" aria-label="Default select example">
+                                        <option selected value="">Selecione el distrito</option>
+                                        <option  *ngFor ="let distrito of distritos" [value]="distrito"> {{distrito}}</option>
+                                    </select>   
+                                
                             </div>
                         </div>
                         <div class="input-group mb-3">

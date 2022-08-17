@@ -6,14 +6,22 @@ import { getDB } from "./config";
 export interface UserFields{
   email: string,
   password:string,
-  name: string,
-  last_name: string,
-  dni: string,
-  gender:string,
-  telephone:string,
-  colegiatura:string,
+  nombres: string,
+  apellidos: string,
   birth_date:Date,
-  role_id:string
+  role_id:string,
+  numeroColegiatura : number,
+  tipoDocumento: string,
+  numDocumento : number,
+  edad : number,
+  sexo : string,
+  telfijo : number, 
+  telcel : String, 
+  direccion : String,
+  fecNacimiento : Date, 
+  distrito : String, 
+  fotoPerfil : File,
+  primerRegistro : string
 }
 
 export const createUserFields = async(userFields: UserFields)=>{
@@ -21,14 +29,22 @@ export const createUserFields = async(userFields: UserFields)=>{
     const db = getDB()
     await setDoc(doc(db, "users",userFields.email), {
       email:userFields.email,
-      name:userFields.name || "",
-      last_name:userFields.last_name || "",
-      dni:userFields.dni || "",
-      gender:userFields.gender || "",
-      telephone:userFields.telephone || "",
-      colegiatura:userFields.colegiatura || "",
+      nombres:userFields.nombres || "",
+      apellidos:userFields.apellidos || "",
       birth_date:userFields.birth_date || "",
-      role_id:userFields.role_id,
+      role_id:userFields.role_id|| "",
+      numeroColegiatura : userFields.numeroColegiatura|| "",
+      tipoDocumento : userFields.tipoDocumento|| "",
+      numDocumento : userFields.numDocumento|| "",
+      edad : userFields.edad|| "",
+      sexo : userFields.sexo|| "",
+      telfijo :userFields.telfijo|| "", 
+      telcel :userFields.telcel|| "",
+      direccion :userFields.direccion|| "",
+      fecNacimiento :userFields.fecNacimiento|| "", 
+      distrito :userFields.distrito|| "",
+      fotoPerfil : userFields.fotoPerfil|| "",
+      primerRegistro : 0,
     });
     return true
   } catch (error) {

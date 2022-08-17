@@ -1,26 +1,29 @@
-<div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
-        <div class="card">
-            <div class="card-body text-center">
-                <h1>INGRESO</h1>
-                <form [formGroup]="loginForm" (ngSubmit)="login()">
-                <div class="form-group">
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Email" formControlName="email" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" formControlName="password" required>
-                </div>
-                <button type="submit" class="btn btn-lg btn-primary btn-block">Ingresar</button>
-                </form>
-                <div class="form-group m-3" style="font-weight:500;">
-                    <p> Crear una cuenta nueva?
-                        <a style="color:blue" [routerLink]="['/register']">
-                            Registro
-                        </a>
-                    </p>
+<div class="container" style="padding-top: 180px; padding-bottom: 180px;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 mx-auto">
+            <div class="card" style="background-color: rgba(31, 31, 29, 0.658);">
+                <div class="card-body text-center">
+                    <h1 style="color: white; font-weight: bold;">INGRESO</h1>
+                    <form [formGroup]="loginForm" (ngSubmit)="login()">
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Correo" formControlName="email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" formControlName="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">Ingresar</button>
+                    </form>
+                    <p style="height: 99px;"></p>
+                <!--  <div class="form-group m-3" style="font-weight:500;">
+                        <p> Crear una cuenta nueva?
+                            <a style="color:blue" [routerLink]="['/register']">
+                                Registro
+                            </a>
+                        </p>
+                    </div> -->
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
 </div>

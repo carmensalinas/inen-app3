@@ -1,103 +1,142 @@
-<mat-toolbar>
-    <span>NUEVO MÉDICO</span>
+<div class="" style="padding-top: 20px">
+<mat-toolbar style="background:white;">
+    <span>Registrar Datos del Jefe de Radiología</span>
     <p></p>
 </mat-toolbar>
-
-<div class="container" style="padding-top: 30px;">
-    <h3>Registrar datos del Médico</h3>
-    <div class="row">
-        <div class="col-4">
-            <form  method="post" [formGroup]="myGroup">
-               
-                <div class="form-group">
-                    <input type="text" formControlName="CentroMedico" placeholder="Centro Médico" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="text" formControlName="apellidos" placeholder="Ingrese apellidos" class="form-control">
-                </div>
-                 <div class="form-group">
-                    <input placeholder="Ingrese fecha de nacimiento" class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" class="form-control"/>
-                </div>
-                  
-                <div class="form-group">
-                    <input type="text" formControlName="numeroColegiatura" placeholder="Ingrese número de colegiatura" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="password" formControlName="contrasena" placeholder="Ingrese contraseña" class="form-control">
-                </div>
-                <div class="form-group">
-                    <a href="https://www.freepik.es/psd-premium/doctor-confiado-contra-fondo-blanco_3421681.htm">
-                        <img src="https://img.freepik.com/psd-gratis/doctor-confiado-contra-fondo-blanco_1459-6976.jpg?w=740"
-                        width="290" height="150"
-                        alt="texto alternativo de la imagen" />
-                    </a>
-                    <input  type="file" name="fotoPerfil" accept=".jpg,.png" />
-                </div>
-            </form>
-        </div>
-        <div class="col-4">
-            <!-- <form  method="post">
-                <div class="form-group">
-                    <select type="select" formControlName="Sede"  class="form-control">
-                        <option value="Value1">Sede Ate</option>
-                        <option value="value2" selected>Seleccione la sede</option>
-                        <option value="value3">Sede Surco</option>
-                    </select> 
-                </div>
-                <div class="form-group">
-                    <input type="text" formControlName="dni" placeholder="Ingrese DNI" class="form-control">
-                </div>
-                <div class="form-group">
-                    <select type="select" formControlName="distrito"  class="form-control">
-                        <option value="Value1">Ate</option>
-                        <option value="value2" selected>Seleccione distrito</option>
-                        <option value="value3">Surco</option>
-                    </select> 
-                </div>
-                <div class="form-group">
-                    <select type="select" formControlName="especialidad"  class="form-control">
-                        <option value="Value1">Medicina Preventiva</option>
-                        <option value="value2" selected>Seleccione especialidad</option>
-                        <option value="value3">Genitales Internos</option>
-                    </select> 
-                </div>
-                <div class="form-group">
-                    <input type="password" formControlName="confirmarContraseña" placeholder="Confirmar contraseña" class="form-control">
-                </div>
-                <div class="form-group">
-                    <fieldset>
-                        <h4>Sexo:</h4>
-                        <label>
-                            <input type="radio" name="sexo" value="masculino"> Masculino
-                        </label>
-                        <label>
-                            <input type="radio" name="sexo" value="femenino"> Femenino
-                        </label>
-                    </fieldset>
-                </div>
-            </form> -->
-        </div>
-        <div class="col-4">
-            <form  method="post">
-                <div class="form-group">
-                    <input type="text" formControlName="nombre" placeholder="Ingrese Nombres" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="email" formControlName="correo" placeholder="Ingrese correo" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="text" formControlName="formacionAcdemica" placeholder="Ingrese formación académica" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="text" formControlName="usuario" placeholder="Ingrese usuario" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="text" formControlName="celular" placeholder="Ingrese celular" class="form-control">
-                </div>
-                <div class="form-group">
-                    <button on-click="registerDoctor()" class="btn btn-primary">Guardar Datos</button>
-                </div>
-            </form>
-        </div>
+<div class="row">
+    <div class="col-2">
+            <img src="https://img.freepik.com/psd-gratis/doctor-confiado-contra-fondo-blanco_1459-6976.jpg?w=740"
+            width="290" height="200"
+            alt="texto alternativo de la imagen" />
     </div>
+    <div class="col-10">
+        <form class="row">
+            <div class="container">
+                <div class="input-group mb-3">
+                    
+                    <div class="col-md-4">
+                        <label for="apellidos" class="form-label">Ingrese apellidos</label>
+                        <input type="text" class="form-control" id="apellidos" name="apellidos">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="nombres" class="form-label">Ingrese Nombres</label>
+                        <input type="text" class="form-control" id="nombres" name="nombres">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="numeroColegiatura" class="form-label">Ingrese número de colegiatura</label>
+                        <input type="text" class="form-control" id="numeroColegiatura" name="numeroColegiatura">
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="col-md-4">
+                        <label for="" class="form-label">Tipo de Documento</label>
+                        <select class="form-control" aria-label="Default select example">
+                            <option selected>Selecione el tipo de documento</option>
+                            <option value="1">DNI</option>
+                            <option value="2">Carnet de Extranjeria</option>
+                            <option value="3">Pasaporte</option>
+                          </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="numDocumento" class="form-label">N° de Documento</label>
+                        <input type="text" class="form-control" id="numDocumento" name="numDocumento">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="edad" class="form-label">Edad</label>
+                        <input type="number" class="form-control" id="edad" name="edad">
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="col-md-4">
+                        <label for="rol" class="form-label">Tipo de Usuario</label>
+                        <input class="form-control" type="text" placeholder="Jefe de Radiología" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <fieldset>
+                            <h4>Sexo:</h4>
+                            <label>
+                                <input type="radio" name="sexo" value="masculino"> Masculino  
+                            </label>
+
+                            <label> 
+                                <input type="radio" name="sexo" value="femenino"> Femenino
+                            </label>
+                        </fieldset>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="telfijo" class="form-label">Teléfono Fijo</label>
+                        <input type="tel" class="form-control" id="telfijo" name="telfijo">
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="col-md-4">
+                        <label for="telcel" class="form-label">Teléfono Celular</label>
+                        <input type="tel" class="form-control" id="telcel" name="telcel">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="direccion" class="form-label">Dirección</label>
+                        <input type="text" class="form-control" id="direccion" name="direccion">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="fecNacimiento" class="form-label">Fecha Nacimiento</label>
+                        <input type="date" class="form-control" id="fecNacimiento" name="fecNacimiento">
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    
+                    <div class="col-md-4">
+                        <label for="correo" class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" id="correo" name="correo" placeholder="@">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" name="password" id="password" placeholder="Ingrese contraseña" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="fecNacimiento" class="form-label">Distrito</label>
+                        <select class="form-control" aria-label="Default select example">
+                            <option selected>Selecione distrto</option>
+                            <option value="1">Cercado de Lima</option>
+                            <option value="2">Breña</option>
+                            <option value="3">Miraflores</option>
+                            <option value="4">San Borja</option>
+                            <option value="5">Ventanilla</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="col-md-4">
+                        
+                    </div>
+                    <div class="col-md-4">
+                        <label for="confirmarPassword" class="form-label">Confirmar Contraseña</label>
+                        <input type="password" name="confirmarPassword" id="password" placeholder="Repita su contraseña" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="fotoPerfil" class="form-label">Subir Foto de Perfil</label>
+                        <input class="form-control" type="file" id="fotoPerfil" name="fotoPerfil">
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="col-md-4">
+        
+                    </div>
+                    <div class="col-md-4">
+        
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-success">Registrar</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
 </div>

@@ -1,0 +1,22 @@
+label{
+   font-size:18px; font-weight:10px
+}
+
+button{
+    font-size:10px; 
+    font-weight:bold; 
+    border-radius: 25px;
+    width:180px;
+    height:55px;  
+    font-size: 30px;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }

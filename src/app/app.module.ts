@@ -37,8 +37,24 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AuthService } from './services/auth.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatRippleModule } from '@angular/material/core';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatListModule} from '@angular/material/list';
 
+const modules = [
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatRippleModule,
+  MatToolbarModule, 
+  MatAutocompleteModule,
+  MatListModule ,
+  MatStepperModule
+];
 @NgModule({
+  
   declarations: [
     AppComponent,
     MedicosComponent,
@@ -63,8 +79,6 @@ import { AuthService } from './services/auth.service';
     MatTableModule,
     MatIconModule,
     MatProgressBarModule,
-    MatButtonModule,
-    MatFormFieldModule,
     MatPaginatorModule,
     CommonModule,
     FormsModule,
@@ -79,11 +93,14 @@ import { AuthService } from './services/auth.service';
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase),
+    modules
+   
   ],
   exports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    modules
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

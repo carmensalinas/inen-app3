@@ -1,25 +1,153 @@
-<div class="row">
-  <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
-    <div class="card">
-          <div class="card-body text-center">
-              <h1>REGISTRO</h1>
-              <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-                  <div class="form-group">
-                      <input type="email" id="email" name="email" class="form-control" placeholder="Email" formControlName="email"required>
-                  </div>
-                  <div class="form-group">
-                      <input type="password" id="password" name="password" class="form-control" placeholder="Password" formControlName="password" required>
-                  </div>
-                  <button type="submit" class="btn btn-lg btn-primary btn-block">Registro</button>
-              </form>
-              <div class="form-group m-3" style="font-weight:500;">
-                  <p> Tiene cuenta?
-                      <a style="color:blue" [routerLink]="['/login']">
-                          Ingreso
-                      </a>
-                  </p>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
+<div class="" style="padding-top: 20px">
+    <div style="background:white; font-size: 24px; font-weight: bold;">
+        <span>Registrar Jefes de Radiología</span>
+        <p></p>
+    </div>
+    <div class="row">
+        <div class="col-2">
+                <img src="https://img.freepik.com/psd-gratis/doctor-confiado-contra-fondo-blanco_1459-6976.jpg?w=740"
+                width="290" height="200"
+                alt="texto alternativo de la imagen" />
+        </div>
+        <div class="col-10">
+            <form class="row">
+                <div class="container">
+                    <form [formGroup]="registerJefesForm" (ngSubmit)="registerJefes()">
+                        <div class="input-group mb-3">
+                        
+                            <div class="col-md-4">
+                                <label for="apellidos" class="form-group">Ingrese apellidos</label>
+                                <input type="text" class="form-control" formControlName="apellidos" id="apellidos" name="apellidos">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="nombres" class="form-group">Ingrese Nombres</label>
+                                <input type="text" class="form-control" formControlName="nombres" id="nombres" name="nombres">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="numeroColegiatura" class="form-group">Ingrese número de colegiatura</label>
+                                <input type="text" class="form-control" formControlName="numeroColegiatura" id="numeroColegiatura" name="numeroColegiatura">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="col-md-4">
+                                <label for="" class="form-group">Tipo de Documento</label>
+                                <select class="form-control" id="tipoDocumento" aria-label="Default select example">
+                                    <option selected formControlName="tipoDocumento">Selecione el tipo de documento</option>
+                                    <option value="1">DNI</option>
+                                    <option value="2">Carnet de Extranjeria</option>
+                                    <option value="3">Pasaporte</option>
+                                </select>
+                            
+                            </div>
+                            <div class="col-md-4">
+                                <label for="numDocumento" class="form-label">N° de Documento</label>
+                                <input type="text" class="form-control" formControlName="numDocumento" id="numDocumento" name="numDocumento">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="edad" class="form-label">Edad</label>
+                                <input type="number" class="form-control" formControlName="edad" id="edad" name="edad">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="col-md-4">
+                                <label for="rol" class="form-label">Tipo de Usuario</label>
+
+                                <input   matInput  class="form-control" type="number" formControlName="rolCode" id="rolCode" name="rolCode"  value = "1" placeholder="Jefe de Radiología" readonly> 
+                            </div>
+                            <div class="col-md-4">
+                                <fieldset formControlName="sexo" id="sexo" formControlName="sexo">
+                                    <h4>Sexo:</h4>
+                                    <label>
+                                        <input type="radio" name="sexo" value="masculino"> Masculino  
+                                    </label>
+        
+                                    <label> 
+                                        <input type="radio" name="sexo" value="femenino"> Femenino
+                                    </label>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="telfijo" class="form-label">Teléfono Fijo</label>
+                                <input type="tel" class="form-control" formControlName="telfijo" id="telfijo" name="telfijo">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="col-md-4">
+                                <label for="telcel" class="form-label">Teléfono Celular</label>
+                                <input type="tel" class="form-control" formControlName="telcel" id="telcel" name="telcel">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="direccion" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" formControlName="direccion" id="direccion" name="direccion">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="fecNacimiento" class="form-label">Fecha Nacimiento</label>
+                                <input type="date" class="form-control" formControlName="fecNacimiento" id="fecNacimiento" name="fecNacimiento">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            
+                            <div class="col-md-4">
+                                <label for="correo" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" formControlName="correo" id="correo" name="correo" placeholder="@">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" name="password" formControlName="password" id="password" placeholder="Ingrese contraseña" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="fecNacimiento" class="form-label">Distrito</label>
+                                <select class="form-control" formControlName="fecNacimiento" name="fecNacimiento" aria-label="Default select example">
+                                    <option selected>Selecione distrto</option>
+                                    <option value="1">Cercado de Lima</option>
+                                    <option value="2">Breña</option>
+                                    <option value="3">Miraflores</option>
+                                    <option value="4">San Borja</option>
+                                    <option value="5">Ventanilla</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="col-md-4">
+                                
+                            </div>
+                            <div class="col-md-4">
+                                <label for="confirmarPassword" class="form-label">Confirmar Contraseña</label>
+                                <input type="password" name="confirmarPassword" formControlName="confirmarPassword" id="confirmarPassword" placeholder="Repita su contraseña" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="fotoPerfil" class="form-label">Subir Foto de Perfil</label>
+                                <input class="form-control" type="file" formControlName="fotoPerfil" id="fotoPerfil" name="fotoPerfil">
+                            </div>
+                        </div>
+
+                        <p style="height: 40px;"></p>
+
+                        <div class="input-group mb-3">
+                            <div class="col-md-3">
+
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-success">Registrar</button>
+                            </div>
+                            <div class="col-md-2">
+
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-danger">Cancelar</button>
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+                        </div>
+                    </form>
+                    <p style="height: 20px;"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    
+    
+    
+    </div>

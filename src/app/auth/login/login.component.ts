@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     const logged = await loginApp(email,password)
     if(logged){
       window.alert("Bienvenido")
-      this.router.navigate(['/perfil'])
+      this.router.navigate(['/lista-pacientes'])
     }else{
       window.alert("Usuario o contraseña incorrecta")
     }

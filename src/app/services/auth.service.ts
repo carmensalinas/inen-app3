@@ -12,5 +12,6 @@ export class AuthService {
   }
   logouth(){
     this.authfirebase.signOut();
+    localStorage.removeItem("user")
   }
 }

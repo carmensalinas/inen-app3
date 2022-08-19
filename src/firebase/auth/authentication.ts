@@ -1,12 +1,13 @@
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { getFirebaseApp } from "../config";
-import { createUserFields, getUser, UserFields } from "../database/users";
+import { createUserFields, getUser, UserModel} from "../database/users";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 const auth = getAuth(getFirebaseApp());
 
-export const loginApp = async (email:string,password:string):Promise<any>=>{
-    const login =  await new Promise((resolve)=>{
+export const loginApp = async (email:string,password:string):Promise<UserModel>=>{
+    let user!:UserModel
+    const login: boolean =  await new Promise((resolve)=>{
         signInWithEmailAndPassword(auth, email, password)
           .then(() => {
             resolve(true)
@@ -16,7 +17,7 @@ export const loginApp = async (email:string,password:string):Promise<any>=>{
           });
     })
     if(login) return await getUser(email)
-    return login
+    return user 
 }
 
 
@@ -39,7 +40,7 @@ class UserCreateResponse{
   }
 }
 
-export const signInApp = async (userFields: UserFields):Promise<any>=>{
+export const signInApp = async (userFields: UserModel):Promise<any>=>{
     if(!userFields.email || !userFields.password || !userFields.rolCode) return new UserCreateResponse(false,"email, contraseña y rol son requeridos")
 
     if(!(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(userFields.email))) return new UserCreateResponse(false,"No es un email correcto")
@@ -69,3 +70,5 @@ export const signInApp = async (userFields: UserFields):Promise<any>=>{
     return new UserCreateResponse(true,"")
 
 }
+
+

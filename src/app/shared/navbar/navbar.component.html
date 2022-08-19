@@ -12,25 +12,32 @@
       </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="nav navbar-nav ml-auto text-uppercase">
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link active js-scroll-trigger" routerLink="medicos" style="color: rgb(255,165,85);font-size: 14px; font-weight: bold;">Médicos</a>
-                </li>
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown" *ngIf="role==='2'">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: rgb(255,165,85);font-size: 14px; font-weight: bold;">
                     PACIENTES
                   </a>          
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="nav-link active js-scroll-trigger" routerLink="nuevo-paciente" style="color: rgb(255,165,85);font-size: 14px; font-weight: bold;">Nuevo Paciente</a>
-                    <a class="nav-link active js-scroll-trigger" routerLink="lista-pacientes" style="color: rgb(255,165,85);font-size: 14px; font-weight: bold;">Lista Pacientes</a>
+                    
                   </div>     
+                </li> -->
+                <li class="nav-item" role="presentation"  *ngIf="role!=-1 && role!=3">
+                  <a class="nav-link active js-scroll-trigger" routerLink="register" style="color: rgb(255,165,85);font-size: 14px; font-weight: bold;">Registro de {{roleToManage}}</a>
                 </li>
-                <li class="nav-item" role="presentation">
+                <li class="nav-item" role="presentation" *ngIf="role===3">
+                  <a class="nav-link active js-scroll-trigger" routerLink="paciente" style="color: rgb(255,165,85); font-size: 14px; font-weight: bold;">Registro de Paciente</a>
+                </li>
+                <li class="nav-item" role="presentation" *ngIf="role===3 || role===2 || role===1">
+                  <a class="nav-link active js-scroll-trigger" routerLink="lista-pacientes" style="color: rgb(255,165,85);font-size: 14px; font-weight: bold;">Lista Pacientes</a>
+                </li>
+                
+                <li class="nav-item" role="presentation" *ngIf="role===3 || role===2">
                   <a class="nav-link active js-scroll-trigger" routerLink="seguimiento-paciente" style="color: rgb(255,165,85); font-size: 14px; font-weight: bold;">Seguimiento del Paciente</a>
                 </li>
-                <li class="nav-item" role="presentation">
+                <li class="nav-item" role="presentation" *ngIf="role===3 || role===1 || role===2">
                   <a class="nav-link active js-scroll-trigger" routerLink="directorio" style="color: rgb(255,165,85);font-size: 14px; font-weight: bold;">Directorio Médico</a>
                 </li>
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: rgb(255,165,85);font-size: 14px; font-weight: bold;">
                     Historial Médico
                   </a>  
@@ -38,16 +45,14 @@
                     <a class="nav-link active js-scroll-trigger" routerLink="historialmedico" style="color: rgb(255,165,85);font-size: 14px; font-weight: bold;">Registrar Historial Médico</a>
                     <a class="nav-link active js-scroll-trigger" routerLink="editarhistorialmedico" style="color: rgb(255,165,85);font-size: 14px; font-weight: bold;">Editar Historial Médico</a>
                   </div>  
-                </li>
-                <li class="nav-item" role="presentation">
+                </li> -->
+                <!-- <li class="nav-item" role="presentation">
                   <a class="nav-link active js-scroll-trigger" routerLink="perfil" style="color: rgb(255,165,85);font-size: 14px; font-weight: bold;">Mi Perfil</a>
-                </li>
-                <li class="nav-item" role="presentation">
+                </li> -->
+                <li class="nav-item" role="presentation" *ngIf="role!=-1">
                   <a class="nav-link active js-scroll-trigger" (click)="logout()" style="color: rgb(255,165,85);font-size: 14px; font-weight: bold;">Salir</a>
                 </li>
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link active js-scroll-trigger" routerLink="register" style="color: rgb(255,165,85);font-size: 14px; font-weight: bold;">Registro Jefes</a>
-                </li>
+                
             </ul>
             <!-- <a class="btn btn-primary text-black-50 border-dark" routerLink="medicos" href="userLogin.html" style="font-family: Montserrat, sans-serif;font-weight: normal;background-color: rgb(255,165,85);border:none;">Acceder</a> -->
         </div>

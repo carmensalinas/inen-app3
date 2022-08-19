@@ -28,6 +28,8 @@ const routes: Routes = [
   {path: 'nuevo-paciente', component: NuevoPacienteComponent},
   { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./auth/register/register.module').then(m => m.RegisterModule) },
+  { path: 'paciente', loadChildren: () => import('./auth/paciente/paciente.module').then(m => m.PacienteModule) },
+  // { path: 'radiologos', loadChildren: () => import('./auth/radiologos/radiologos.module').then(m => m.RadiologosModule) },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

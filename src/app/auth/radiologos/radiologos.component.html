@@ -1,6 +1,6 @@
-<div class="" style="padding-top: 20px">
+<!-- <div class="" style="padding-top: 20px">
     <div style="background:white; font-size: 24px; font-weight: bold;">
-        <span>Registrar Medico</span>
+        <span>Registrar Jefes de Radiología</span>
         <p></p>
     </div>
     <div class="row">
@@ -12,7 +12,7 @@
         <div class="col-10">
             <form class="row">
                 <div class="container">
-                    <form [formGroup]="registerJefesForm" (ngSubmit)="registerUser()">
+                    <form [formGroup]="registerRadiologosForm" (ngSubmit)="registerRadiologos()">
                         <div class="input-group mb-3">
                         
                             <div class="col-md-4">
@@ -48,7 +48,8 @@
                         <div class="input-group mb-3">
                             <div class="col-md-4">
                                 <label for="rol" class="form-label">Tipo de Usuario</label>
-                                <input class="form-control" type="string" placeholder="{{roleToManage}}" readonly> 
+
+                                <input class="form-control" type="number" formControlName="rolCode" id="rolCode" name="rolCode" placeholder="Radiologo" readonly> 
                             </div>
                            
                             <div class="col-md-4">
@@ -139,4 +140,4 @@
     
     
     
-    </div>
+    </div> -->

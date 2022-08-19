@@ -1,43 +1,41 @@
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { getDB } from "./config";
 
 // Add a new document in collection "cities"
 
-export interface UserFields{
+export interface UserModel{
   email: string,
   password:string,
   nombres: string,
   apellidos: string,
-  birth_date:Date,
-  role_id:string,
+  rolCode:number,
   numeroColegiatura : number,
   tipoDocumento: string,
   numDocumento : number,
   edad : number,
-  sexo : string,
+  tipoGenero : string,
   telfijo : number, 
   telcel : String, 
   direccion : String,
   fecNacimiento : Date, 
   distrito : String, 
   fotoPerfil : File,
-  primerRegistro : string
+  primerRegistro? : number
 }
 
-export const createUserFields = async(userFields: UserFields)=>{
+export const createUserFields = async(userFields: UserModel)=>{
   try {
     const db = getDB()
     await setDoc(doc(db, "users",userFields.email), {
       email:userFields.email,
       nombres:userFields.nombres || "",
       apellidos:userFields.apellidos || "",
-      birth_date:userFields.birth_date || "",
-      role_id:userFields.role_id|| "",
+      rolCode:userFields.rolCode|| "",
       numeroColegiatura : userFields.numeroColegiatura|| "",
       tipoDocumento : userFields.tipoDocumento|| "",
       numDocumento : userFields.numDocumento|| "",
       edad : userFields.edad|| "",
-      sexo : userFields.sexo|| "",
+      tipoGenero : userFields.tipoGenero|| "",
       telfijo :userFields.telfijo|| "", 
       telcel :userFields.telcel|| "",
       direccion :userFields.direccion|| "",
@@ -52,3 +50,21 @@ export const createUserFields = async(userFields: UserFields)=>{
     return false
   }
 }
+
+
+
+export const getUser = async (email:string): Promise<UserModel>=>{
+  let user!:UserModel;
+  try {
+    const db = getDB()
+    const docRef = doc(db, "users", email);
+    const docSnap = await getDoc(docRef);
+    if(docSnap.exists()){
+      user =  docSnap.data() as UserModel
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return user
+}
+

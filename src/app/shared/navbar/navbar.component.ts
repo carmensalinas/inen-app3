@@ -8,13 +8,30 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  public role:number =-1;
+  public roleToManage:string="";
   constructor(private auth:AuthService, private router : Router) { }
 
   ngOnInit(): void {
+    const user = localStorage.getItem("user")
+    if(user){
+      this.role = JSON.parse(user).rolCode
+      switch (this.role) {
+        case 0:
+          this.roleToManage = "Jefes"
+          break;
+        case 1:
+          this.roleToManage = "Radiologos"
+          break;
+        case 2:
+          this.roleToManage = "Tecnicos de Radiologia"
+          break;
+      }
+    }
+
   }
   logout(){
     this.auth.logouth()
-    this.router.navigate(['/login'])
+    window.location.href = '/login'
   }
 }

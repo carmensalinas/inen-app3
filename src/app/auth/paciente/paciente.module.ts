@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { RegisterRoutingModule } from './register-routing.module';
-import { RegisterComponent } from './register.component';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatListModule} from '@angular/material/list';
+import { PacienteRoutingModule } from './paciente-routing.module';
+import { PacienteComponent } from './paciente.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatListModule} from '@angular/material/list';
+import {MatStepperModule} from '@angular/material/stepper';
 
 const modules = [
   MatButtonModule,
@@ -25,15 +25,14 @@ const modules = [
   MatStepperModule,
   MatSelectModule
 ];
+
 @NgModule({
   declarations: [
-    RegisterComponent,
-
+    PacienteComponent,
   ],
   imports: [
     CommonModule,
-    RegisterRoutingModule,
-    FormsModule,
+    PacienteRoutingModule,
     ReactiveFormsModule,
     modules
   ],
@@ -41,4 +40,4 @@ const modules = [
     modules
   ],
 })
-export class RegisterModule { }
+export class PacienteModule { }

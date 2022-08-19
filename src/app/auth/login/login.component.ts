@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl} from '@angular/forms';
 import { Router } from '@angular/router';
 import { loginApp } from 'src/firebase/auth/authentication';
+import { UserModel } from 'src/firebase/database/users';
 
 @Component({
   selector: 'app-login',
@@ -20,13 +21,15 @@ export class LoginComponent implements OnInit {
 
   async login(){
     const {email, password} = this.loginForm.value
-    const logged = await loginApp(email,password)
-    if(logged){
+    const userLogged: UserModel = await loginApp(email,password)
+    if(userLogged){
+      localStorage.setItem("user",JSON.stringify(userLogged))
       window.alert("Bienvenido")
-      this.router.navigate(['/lista-pacientes'])
+      window.location.href = userLogged.rolCode === 3? '/pacientes' : '/register'
     }else{
       window.alert("Usuario o contraseña incorrecta")
     }
   }
 
 }
+

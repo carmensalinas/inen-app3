@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { signInApp } from 'src/firebase/auth/authentication';
-import { UserFields } from 'src/firebase/database/users';
+// import { UserFields } from 'src/firebase/database/users';
 
 @Component({
   selector: 'app-medicos',

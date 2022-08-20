@@ -36,7 +36,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AuthService } from './services/auth.service';
+// import { AuthService } from './services/auth.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -102,7 +102,7 @@ const modules = [
     ReactiveFormsModule,
     modules
   ],
-  providers: [AuthService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -10,12 +10,12 @@ import { SeguimientoPacienteComponent } from './pages/seguimiento-paciente/segui
 import { ListaPacientesComponent } from './pages/pacientes/lista-pacientes/lista-pacientes.component';
 import { NuevoPacienteComponent } from './pages/pacientes/nuevo-paciente/nuevo-paciente.component';
 import { EditarHistorialComponent } from './pages/historial/editar-historial/editar-historial.component';
-import { PasswordComponent } from './pages/password/password.component';
+// import { PasswordComponent } from './pages/password/password.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 //Prueba
 const routes: Routes = [
   {path: 'directorio', component: DirectorioComponent},
-  {path: 'password', component: PasswordComponent },
+  // {path: 'password', component: PasswordComponent },
   {path: 'medicos', component: MedicosComponent},
   {path: 'detallePaciente', component: DetallePacienteComponent},
   {path: 'perfil', component: PerfilComponent},

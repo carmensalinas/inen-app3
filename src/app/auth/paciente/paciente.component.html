@@ -24,8 +24,11 @@
                                 <input type="text" class="form-control" formControlName="nombres" id="nombres" name="nombres">
                             </div>
                             <div class="col-md-4">
-                                <label for="numeroColegiatura" class="form-group">Ingrese número de colegiatura</label>
-                                <input type="text" class="form-control" formControlName="numeroColegiatura" id="numeroColegiatura" name="numeroColegiatura">
+                                <label class="form-group">Sexo</label>
+                                <select formControlName="tipoGenero" class="form-control" id="tipoGenero" aria-label="Default select example">
+                                    <option selected value="">Selecione el tipo de género</option>
+                                    <option *ngFor ="let genero of tipoGeneros" [value]="genero">{{genero}}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="input-group mb-3">
@@ -47,22 +50,23 @@
                         </div>
                         <div class="input-group mb-3">
                             <div class="col-md-4">
-                                <label for="rol" class="form-label">Tipo de Usuario</label>
-
-                                <input class="form-control" type="number" formControlName="rolCode" id="rolCode" name="rolCode" placeholder="Paciente" readonly> 
+                                    <label for="rol" class="form-label">Tipo de Usuario</label>
+                                    <input class="form-control" type="string" placeholder="{{roleToManage}}" readonly> 
                             </div>
                            
                             <div class="col-md-4">
-                                <label class="form-group">Sexo</label>
-                                <select formControlName="tipoGenero" class="form-control" id="tipoGenero" aria-label="Default select example">
-                                    <option selected value="">Selecione el tipo de género</option>
-                                    <option *ngFor ="let genero of tipoGeneros" [value]="genero">{{genero}}</option>
-                                </select>
+                                <label class="form-group">Distrito</label>
+                                    <select formControlName="distrito" class="form-control" id="distrito" aria-label="Default select example">
+                                        <option selected value="">Selecione el distrito</option>
+                                        <option  *ngFor ="let distrito of distritos" [value]="distrito"> {{distrito}}</option>
+                                    </select>   
+                                
                             </div>
                             <div class="col-md-4">
-                                <label for="telfijo" class="form-label">Teléfono Fijo</label>
-                                <input type="tel" class="form-control" formControlName="telfijo" id="telfijo" name="telfijo">
+                                <label for="direccion" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" formControlName="direccion" id="direccion" name="direccion">
                             </div>
+                            
                         </div>
                         <div class="input-group mb-3">
                             <div class="col-md-4">
@@ -70,8 +74,8 @@
                                 <input type="tel" class="form-control" formControlName="telcel" id="telcel" name="telcel">
                             </div>
                             <div class="col-md-4">
-                                <label for="direccion" class="form-label">Dirección</label>
-                                <input type="text" class="form-control" formControlName="direccion" id="direccion" name="direccion">
+                                <label for="telfijo" class="form-label">Teléfono Fijo</label>
+                                <input type="tel" class="form-control" formControlName="telfijo" id="telfijo" name="telfijo">
                             </div>
                             <div class="col-md-4">
                                 <label for="fecNacimiento" class="form-label">Fecha Nacimiento</label>
@@ -89,25 +93,21 @@
                                 <input type="password" name="password" formControlName="password" id="password" placeholder="Ingrese contraseña" class="form-control">
                             </div>
                             <div class="col-md-4">
-                                <label class="form-group">Distrito</label>
-                                    <select formControlName="distrito" class="form-control" id="distrito" aria-label="Default select example">
-                                        <option selected value="">Selecione el distrito</option>
-                                        <option  *ngFor ="let distrito of distritos" [value]="distrito"> {{distrito}}</option>
-                                    </select>   
-                                
-                            </div>
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="col-md-4">
-                                
-                            </div>
-                            <div class="col-md-4">
                                 <label for="confirmarPassword" class="form-label">Confirmar Contraseña</label>
                                 <input type="password" name="confirmarPassword" formControlName="confirmarPassword" id="confirmarPassword" placeholder="Repita su contraseña" class="form-control">
                             </div>
+                            
+                        </div>
+                        <div class="input-group mb-3">
                             <div class="col-md-4">
                                 <label for="fotoPerfil" class="form-label">Subir Foto de Perfil</label>
                                 <input class="form-control" type="file" formControlName="fotoPerfil" id="fotoPerfil" name="fotoPerfil">
+                            </div>
+                            <div class="col-md-4">
+                            
+                            </div>
+                            <div class="col-md-4">
+                                
                             </div>
                         </div>
 

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl} from '@angular/forms';
+import { StorageService } from 'src/app/services/storage.service';
+import { UserModel } from 'src/firebase/database/users';
 // import { creaPaciente} from 'src/firebase/auth/authentication';
 
 @Component({
@@ -11,9 +13,8 @@ export class PacienteComponent{
   registerPacientesForm = new FormGroup({
     apellidos: new FormControl(''),
     nombres: new FormControl(''),
-    numeroColegiatura : new FormControl(''),
     numDocumento : new FormControl(''),
-    rolJefe : new FormControl(''),
+    rolPaciente : new FormControl(''),
     correo : new FormControl(''),
     password : new FormControl(''),
     edad : new FormControl(''),
@@ -29,21 +30,39 @@ export class PacienteComponent{
     fotoPerfil:  new FormControl('')
   })
 
-  rolCodes : string = '3';
   tipoDocumentos = ['DNI', 'Carnet de Extranjería', 'Pasaporte'];
   tipoGeneros = ['Masculino', 'Femenino'];
   distritos = ['Cercado de Lima', 'Breña', 'Miraflores', 'San Borja', 'Ventanilla'];
-  
-  constructor() { }
+  roleToManage:string = "";
+  userRolCode = 3;
+  imagenes : any [] = [];
+  userName ='';
 
+  constructor(private storage:StorageService) { }
+
+  ngOnInit(): void {
+    const user = localStorage.getItem("user")
+    if(user){
+      switch (JSON.parse(user).rolCode) {
+        case 3:
+          this.roleToManage = "Paciente"
+          break;
+      }
+    } 
+
+
+      console.log(user)
+      if(user){
+          this.userName = "Paciente"+JSON.parse(user).nombres + " " + JSON.parse(user).apellidos
+      }
+  }
   async registerPacientes(){
     let newPaciente:any={
       email: this.registerPacientesForm.value.correo,
       password: this.registerPacientesForm.value.password,
-      rolCode: this.rolCodes,
+      rolCode: this.userRolCode,
       apellidos: this.registerPacientesForm.value.apellidos,
       nombres: this.registerPacientesForm.value.nombres,
-      numeroColegiatura : this.registerPacientesForm.value.numeroColegiatura,
       tipoDocumento: this.registerPacientesForm.value.tipoDocumento,
       numDocumento : this.registerPacientesForm.value.numDocumento,
       edad : this.registerPacientesForm.value.edad,
@@ -53,7 +72,6 @@ export class PacienteComponent{
       direccion : this.registerPacientesForm.value.direccion,
       fecNacimiento : this.registerPacientesForm.value.fecNacimiento,
       distrito : this.registerPacientesForm.value.distrito,
-      confirmarPassword : this.registerPacientesForm.value.confirmarPassword,
       fotoPerfil : this.registerPacientesForm.value.fotoPerfil
     }
 
@@ -66,4 +84,30 @@ export class PacienteComponent{
     //   }
     }
 
+
+
+
+
+    // cargarImagen(event : any){
+    //   let archivos = event.target.files;
+
+    //   for(let i=0; i<archivos.length; i++){
+    //     let reader = new FileReader();
+    //     reader.readAsDataURL(archivos[i]);
+    //     reader.onloadend = () => {
+    //     console.log(reader.result);
+    //     this.imagenes.push(reader.result);  
+    //     this.storage.subirImagen(this.userName+"_"+Date.now(),reader.result)
+    //     // .then(urlImagen){
+    //     //     console.log(this.urlImagen)
+    //     //         // let usuario ={
+    //     //         //   name : "",
+    //     //         //   imgProfile: urlImagen
+    //     //         // }
+  
+    //     //   };
+    //     }
+    //   }
+
+    // }
 }

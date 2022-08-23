@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore";
 import { getDB } from "./config";
 
 // Add a new document in collection "cities"
@@ -66,5 +66,24 @@ export const getUser = async (email:string): Promise<UserModel>=>{
     console.log(error);
   }
   return user
+}
+
+export const obtenerRadiologosDb = async (): Promise<UserModel[]>=>{
+  let users:UserModel[] = [];
+  try {
+    const db = getDB()
+    const q = query(collection(db, "users"), where('rolCode','==',2))
+    const docsSnap = await getDocs(q)
+    
+    if(!docsSnap.empty){
+      docsSnap.forEach((doc:any) => {
+        console.log(doc.data())
+        users.push(doc.data())
+      });
+    }
+  } catch (error) {
+    console.log("db error: ",error);
+  }
+  return users
 }
 

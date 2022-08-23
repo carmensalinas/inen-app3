@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl} from '@angular/forms';
-import { StorageService } from 'src/app/services/storage.service';
-import { UserModel } from 'src/firebase/database/users';
-// import { creaPaciente} from 'src/firebase/auth/authentication';
+import { Router } from '@angular/router';
+import { crearPacienteDb, PacienteModel } from 'src/firebase/database/paciente';
+import { obtenerRadiologosDb, UserModel } from 'src/firebase/database/users';
+
 
 @Component({
   selector: 'app-paciente',
@@ -26,41 +27,26 @@ export class PacienteComponent{
     fecNacimiento :  new FormControl(''),
     distrito :  new FormControl(''),
     confirmarPassword :  new FormControl(''),
-    rolCode :  new FormControl(''),
-    fotoPerfil:  new FormControl('')
+    fotoPerfil:  new FormControl(''),
+    radiologo_id: new FormControl('')
   })
 
   tipoDocumentos = ['DNI', 'Carnet de Extranjería', 'Pasaporte'];
   tipoGeneros = ['Masculino', 'Femenino'];
   distritos = ['Cercado de Lima', 'Breña', 'Miraflores', 'San Borja', 'Ventanilla'];
-  roleToManage:string = "";
-  userRolCode = 3;
+
   imagenes : any [] = [];
-  userName ='';
 
-  constructor(private storage:StorageService) { }
+  radiologos : UserModel[] = [];
+  
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {
-    const user = localStorage.getItem("user")
-    if(user){
-      switch (JSON.parse(user).rolCode) {
-        case 3:
-          this.roleToManage = "Paciente"
-          break;
-      }
-    } 
-
-
-      console.log(user)
-      if(user){
-          this.userName = "Paciente"+JSON.parse(user).nombres + " " + JSON.parse(user).apellidos
-      }
+  async ngOnInit() {
+    this.radiologos = await obtenerRadiologosDb()
   }
+  
   async registerPacientes(){
-    let newPaciente:any={
-      email: this.registerPacientesForm.value.correo,
-      password: this.registerPacientesForm.value.password,
-      rolCode: this.userRolCode,
+    let nuevoPaciente:PacienteModel={
       apellidos: this.registerPacientesForm.value.apellidos,
       nombres: this.registerPacientesForm.value.nombres,
       tipoDocumento: this.registerPacientesForm.value.tipoDocumento,
@@ -72,42 +58,24 @@ export class PacienteComponent{
       direccion : this.registerPacientesForm.value.direccion,
       fecNacimiento : this.registerPacientesForm.value.fecNacimiento,
       distrito : this.registerPacientesForm.value.distrito,
-      fotoPerfil : this.registerPacientesForm.value.fotoPerfil
+      radiologo_id: this.registerPacientesForm.value.radiologo_id
+    } 
+    const error = this.validarCamposPaciente(nuevoPaciente)
+    if(error) return window.alert(error)
+    if(await crearPacienteDb(nuevoPaciente)){
+      window.alert("Paciente registrado correctamente!")
+      this.router.navigate(['/lista-pacientes'])
+    }else{
+      window.alert("Ocurrió un error al crear el paciente")
     }
 
-    // const create = await creaPaciente(newPaciente)
-    //   if(create.success){
-    //     window.alert("Paciente creado correctamente!")
-    //     //do -some
-    //   }else{
-    //     window.alert(create.message)
-    //   }
-    }
+  }
 
+  validarCamposPaciente(paciente:PacienteModel):string{
+    if(!paciente.nombres) return "El nombre es requerido"
+    if(!paciente.numDocumento) return "El número de documento es requerido"
+    if(!paciente.radiologo_id) return "El radiólogo asignado es requerido"
+    return ""
+  }
 
-
-
-
-    // cargarImagen(event : any){
-    //   let archivos = event.target.files;
-
-    //   for(let i=0; i<archivos.length; i++){
-    //     let reader = new FileReader();
-    //     reader.readAsDataURL(archivos[i]);
-    //     reader.onloadend = () => {
-    //     console.log(reader.result);
-    //     this.imagenes.push(reader.result);  
-    //     this.storage.subirImagen(this.userName+"_"+Date.now(),reader.result)
-    //     // .then(urlImagen){
-    //     //     console.log(this.urlImagen)
-    //     //         // let usuario ={
-    //     //         //   name : "",
-    //     //         //   imgProfile: urlImagen
-    //     //         // }
-  
-    //     //   };
-    //     }
-    //   }
-
-    // }
 }

@@ -2,7 +2,7 @@ import { FileItem } from "../models/file-item";
 
 
 export class ImageValidator {
-  private acceptType = ['image/jpeg', 'image/png'];
+  private acceptType = ['image/jpeg', 'image/png', 'image/nii'];
 
   validateType(fileType: string): boolean {
     return fileType === '' || fileType === undefined

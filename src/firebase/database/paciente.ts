@@ -1,9 +1,10 @@
-import { doc, getDoc, setDoc, addDoc, collection } from "firebase/firestore";
+import { doc, getDoc, setDoc, addDoc, collection, query, where, getDocs } from "firebase/firestore";
 import { getDB } from "./config";
 
 // Add a new document in collection "cities"
 
 export interface PacienteModel{
+  id?: string,
   nombres: string,
   apellidos: string,
   tipoDocumento: string,
@@ -42,20 +43,40 @@ export const crearPacienteDb =  async(paciente: PacienteModel)=>{
   }
 }
 
-
-
-export const getPaciente = async (email:string): Promise<PacienteModel>=>{
-  let user!:PacienteModel;
+export const obtenerPacientesDb = async (radiologo_id:string): Promise<PacienteModel[]>=>{
+  let pacientes:PacienteModel[] = [];
   try {
     const db = getDB()
-    const docRef = doc(db, "pacientes", email);
+    let docsSnap:any;
+
+    if(radiologo_id){
+      docsSnap = await getDocs(query(collection(db, "pacientes"), where('radiologo_id','==',radiologo_id)))
+    }else{
+      docsSnap = await getDocs(collection(db, "pacientes"))
+    }
+    
+    if(!docsSnap.empty){
+      docsSnap.forEach((doc:any) => {
+        pacientes.push({...doc.data(),id:doc.id})
+      });
+    }
+  } catch (error) {
+    console.log("db error: ",error);
+  }
+  return pacientes
+}
+
+export const obtenerPacienteDb = async (id:string): Promise<PacienteModel>=>{
+  let paciente!:PacienteModel;
+  try {
+    const db = getDB()
+    const docRef = doc(db, "pacientes", id);
     const docSnap = await getDoc(docRef);
     if(docSnap.exists()){
-      user =  docSnap.data() as PacienteModel
+      paciente =  docSnap.data() as PacienteModel
     }
   } catch (error) {
     console.log(error);
   }
-  return user
+  return paciente
 }
-

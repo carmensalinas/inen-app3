@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } f
 import { getFirebaseApp } from "../config";
 import { createUserFields, getUser, UserModel} from "../database/users";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { PacienteModel } from "../database/paciente";
 
 const auth = getAuth(getFirebaseApp());
 

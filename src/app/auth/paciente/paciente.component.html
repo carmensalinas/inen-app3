@@ -1,14 +1,14 @@
 <div class="" style="padding-top: 20px">
     <div style="background:white; font-size: 24px; font-weight: bold;">
-        <span>Registrar Jefes de Radiología</span>
+        <span>Registro de Pacientes</span>
         <p></p>
     </div>
     <div class="row">
-        <div class="col-2">
+        <!-- <div class="col-2">
                 <img src="https://img.freepik.com/psd-gratis/doctor-confiado-contra-fondo-blanco_1459-6976.jpg?w=740"
                 width="290" height="200"
                 alt="texto alternativo de la imagen" />
-        </div>
+        </div> -->
         <div class="col-10">
             <form class="row">
                 <div class="container">
@@ -24,8 +24,11 @@
                                 <input type="text" class="form-control" formControlName="nombres" id="nombres" name="nombres">
                             </div>
                             <div class="col-md-4">
-                                <label for="numeroColegiatura" class="form-group">Ingrese número de colegiatura</label>
-                                <input type="text" class="form-control" formControlName="numeroColegiatura" id="numeroColegiatura" name="numeroColegiatura">
+                                <label class="form-group">Sexo</label>
+                                <select formControlName="tipoGenero" class="form-control" id="tipoGenero" aria-label="Default select example">
+                                    <option selected value="">Selecione el tipo de género</option>
+                                    <option *ngFor ="let genero of tipoGeneros" [value]="genero">{{genero}}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="input-group mb-3">
@@ -47,22 +50,26 @@
                         </div>
                         <div class="input-group mb-3">
                             <div class="col-md-4">
-                                <label for="rol" class="form-label">Tipo de Usuario</label>
-
-                                <input class="form-control" type="number" formControlName="rolCode" id="rolCode" name="rolCode" placeholder="Paciente" readonly> 
+                                <label class="form-group">Radiólogo Asignado</label>
+                                <select formControlName="radiologo_id" class="form-control" id="radiologo_id" aria-label="Default select example">
+                                    <option selected value="">Selecione el radiólogo asignado</option>
+                                    <option *ngFor ="let radiologo of radiologos" [value]="radiologo.email">{{radiologo.nombres}} {{radiologo.apellidos}}</option>
+                                </select>
                             </div>
                            
                             <div class="col-md-4">
-                                <label class="form-group">Sexo</label>
-                                <select formControlName="tipoGenero" class="form-control" id="tipoGenero" aria-label="Default select example">
-                                    <option selected value="">Selecione el tipo de género</option>
-                                    <option *ngFor ="let genero of tipoGeneros" [value]="genero">{{genero}}</option>
-                                </select>
+                                <label class="form-group">Distrito</label>
+                                    <select formControlName="distrito" class="form-control" id="distrito" aria-label="Default select example">
+                                        <option selected value="">Selecione el distrito</option>
+                                        <option  *ngFor ="let distrito of distritos" [value]="distrito"> {{distrito}}</option>
+                                    </select>   
+                                
                             </div>
                             <div class="col-md-4">
-                                <label for="telfijo" class="form-label">Teléfono Fijo</label>
-                                <input type="tel" class="form-control" formControlName="telfijo" id="telfijo" name="telfijo">
+                                <label for="direccion" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" formControlName="direccion" id="direccion" name="direccion">
                             </div>
+                            
                         </div>
                         <div class="input-group mb-3">
                             <div class="col-md-4">
@@ -70,8 +77,8 @@
                                 <input type="tel" class="form-control" formControlName="telcel" id="telcel" name="telcel">
                             </div>
                             <div class="col-md-4">
-                                <label for="direccion" class="form-label">Dirección</label>
-                                <input type="text" class="form-control" formControlName="direccion" id="direccion" name="direccion">
+                                <label for="telfijo" class="form-label">Teléfono Fijo</label>
+                                <input type="tel" class="form-control" formControlName="telfijo" id="telfijo" name="telfijo">
                             </div>
                             <div class="col-md-4">
                                 <label for="fecNacimiento" class="form-label">Fecha Nacimiento</label>
@@ -85,29 +92,24 @@
                                 <input type="email" class="form-control" formControlName="correo" id="correo" name="correo" placeholder="@">
                             </div>
                             <div class="col-md-4">
-                                <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" name="password" formControlName="password" id="password" placeholder="Ingrese contraseña" class="form-control">
+                                <!-- <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" name="password" formControlName="password" id="password" placeholder="Ingrese contraseña" class="form-control"> -->
                             </div>
                             <div class="col-md-4">
-                                <label class="form-group">Distrito</label>
-                                    <select formControlName="distrito" class="form-control" id="distrito" aria-label="Default select example">
-                                        <option selected value="">Selecione el distrito</option>
-                                        <option  *ngFor ="let distrito of distritos" [value]="distrito"> {{distrito}}</option>
-                                    </select>   
-                                
+                                <!-- <label for="confirmarPassword" class="form-label">Confirmar Contraseña</label>
+                                <input type="password" name="confirmarPassword" formControlName="confirmarPassword" id="confirmarPassword" placeholder="Repita su contraseña" class="form-control"> -->
                             </div>
+                            
                         </div>
                         <div class="input-group mb-3">
                             <div class="col-md-4">
                                 
                             </div>
                             <div class="col-md-4">
-                                <label for="confirmarPassword" class="form-label">Confirmar Contraseña</label>
-                                <input type="password" name="confirmarPassword" formControlName="confirmarPassword" id="confirmarPassword" placeholder="Repita su contraseña" class="form-control">
+                            
                             </div>
                             <div class="col-md-4">
-                                <label for="fotoPerfil" class="form-label">Subir Foto de Perfil</label>
-                                <input class="form-control" type="file" formControlName="fotoPerfil" id="fotoPerfil" name="fotoPerfil">
+                                
                             </div>
                         </div>
 

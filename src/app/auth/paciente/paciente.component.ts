@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl} from '@angular/forms';
-// import { creaPaciente} from 'src/firebase/auth/authentication';
+import { Router } from '@angular/router';
+import { crearPacienteDb, PacienteModel } from 'src/firebase/database/paciente';
+import { obtenerRadiologosDb, UserModel } from 'src/firebase/database/users';
+
 
 @Component({
   selector: 'app-paciente',
@@ -11,9 +14,8 @@ export class PacienteComponent{
   registerPacientesForm = new FormGroup({
     apellidos: new FormControl(''),
     nombres: new FormControl(''),
-    numeroColegiatura : new FormControl(''),
     numDocumento : new FormControl(''),
-    rolJefe : new FormControl(''),
+    rolPaciente : new FormControl(''),
     correo : new FormControl(''),
     password : new FormControl(''),
     edad : new FormControl(''),
@@ -25,25 +27,28 @@ export class PacienteComponent{
     fecNacimiento :  new FormControl(''),
     distrito :  new FormControl(''),
     confirmarPassword :  new FormControl(''),
-    rolCode :  new FormControl(''),
-    fotoPerfil:  new FormControl('')
+    fotoPerfil:  new FormControl(''),
+    radiologo_id: new FormControl('')
   })
 
-  rolCodes : string = '3';
   tipoDocumentos = ['DNI', 'Carnet de Extranjería', 'Pasaporte'];
   tipoGeneros = ['Masculino', 'Femenino'];
   distritos = ['Cercado de Lima', 'Breña', 'Miraflores', 'San Borja', 'Ventanilla'];
-  
-  constructor() { }
 
+  imagenes : any [] = [];
+
+  radiologos : UserModel[] = [];
+  
+  constructor(private router: Router) { }
+
+  async ngOnInit() {
+    this.radiologos = await obtenerRadiologosDb()
+  }
+  
   async registerPacientes(){
-    let newPaciente:any={
-      email: this.registerPacientesForm.value.correo,
-      password: this.registerPacientesForm.value.password,
-      rolCode: this.rolCodes,
+    let nuevoPaciente:PacienteModel={
       apellidos: this.registerPacientesForm.value.apellidos,
       nombres: this.registerPacientesForm.value.nombres,
-      numeroColegiatura : this.registerPacientesForm.value.numeroColegiatura,
       tipoDocumento: this.registerPacientesForm.value.tipoDocumento,
       numDocumento : this.registerPacientesForm.value.numDocumento,
       edad : this.registerPacientesForm.value.edad,
@@ -53,17 +58,24 @@ export class PacienteComponent{
       direccion : this.registerPacientesForm.value.direccion,
       fecNacimiento : this.registerPacientesForm.value.fecNacimiento,
       distrito : this.registerPacientesForm.value.distrito,
-      confirmarPassword : this.registerPacientesForm.value.confirmarPassword,
-      fotoPerfil : this.registerPacientesForm.value.fotoPerfil
+      radiologo_id: this.registerPacientesForm.value.radiologo_id
+    } 
+    const error = this.validarCamposPaciente(nuevoPaciente)
+    if(error) return window.alert(error)
+    if(await crearPacienteDb(nuevoPaciente)){
+      window.alert("Paciente registrado correctamente!")
+      this.router.navigate(['/lista-pacientes'])
+    }else{
+      window.alert("Ocurrió un error al crear el paciente")
     }
 
-    // const create = await creaPaciente(newPaciente)
-    //   if(create.success){
-    //     window.alert("Paciente creado correctamente!")
-    //     //do -some
-    //   }else{
-    //     window.alert(create.message)
-    //   }
-    }
+  }
+
+  validarCamposPaciente(paciente:PacienteModel):string{
+    if(!paciente.nombres) return "El nombre es requerido"
+    if(!paciente.numDocumento) return "El número de documento es requerido"
+    if(!paciente.radiologo_id) return "El radiólogo asignado es requerido"
+    return ""
+  }
 
 }

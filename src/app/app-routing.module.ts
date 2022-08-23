@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'directorio', component: DirectorioComponent},
   // {path: 'password', component: PasswordComponent },
   {path: 'medicos', component: MedicosComponent},
-  {path: 'detallePaciente', component: DetallePacienteComponent},
+  {path: 'detallePaciente', loadChildren: () => import('./pages/detallePaciente/detallePaciente.module').then((m) => m.DetallePacienteModule)},
   {path: 'perfil', component: PerfilComponent},
   {path : 'home', component: HomeComponent},
   {path: 'pacientes', component: PacientesComponent},

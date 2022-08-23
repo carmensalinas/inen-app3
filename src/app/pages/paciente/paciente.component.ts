@@ -32,7 +32,7 @@ export class PacienteComponent{
   })
 
   tipoDocumentos = ['DNI', 'Carnet de Extranjería', 'Pasaporte'];
-  tipoGeneros = ['Masculino', 'Femenino'];
+  tipoGeneros = ['Masculino'];
   distritos = ['Cercado de Lima', 'Breña', 'Miraflores', 'San Borja', 'Ventanilla'];
 
   imagenes : any [] = [];

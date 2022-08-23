@@ -4,12 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { MedicosComponent } from './pages/medicos/medicos.component';
-// import { DetallePacienteComponent } from './pages/detallePaciente/detallePaciente.component';
-import { PacientesComponent } from './pages/pacientes/pacientes.component';
-import { SeguimientoPacienteComponent } from './pages/seguimiento-paciente/seguimiento-paciente.component';
 import { DirectorioComponent } from './pages/directorio/directorio.component';
-import { PerfilComponent } from './pages/perfil/perfil.component';
 import { HomeComponent } from './pages/home/home.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSliderModule} from '@angular/material/slider';
@@ -21,8 +16,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { HistorialComponent } from './pages/historial/historial.component';
-import { ListaPacientesComponent } from './pages/pacientes/lista-pacientes/lista-pacientes.component';
-import { NuevoPacienteComponent } from './pages/pacientes/nuevo-paciente/nuevo-paciente.component';
+import { ListaPacientesComponent } from './pages/lista-pacientes/lista-pacientes.component';
 import { EditarHistorialComponent } from './pages/historial/editar-historial/editar-historial.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
@@ -36,7 +30,6 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireModule } from '@angular/fire/compat';
-// import { AuthService } from './services/auth.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -57,16 +50,10 @@ const modules = [
   
   declarations: [
     AppComponent,
-    MedicosComponent,
-    // DetallePacienteComponent,
-    PacientesComponent,
-    SeguimientoPacienteComponent,
     DirectorioComponent,
-    PerfilComponent,
     HomeComponent,
     HistorialComponent,
     ListaPacientesComponent,
-    NuevoPacienteComponent,
     EditarHistorialComponent,
     NavbarComponent
   ],

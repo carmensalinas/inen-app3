@@ -20,7 +20,8 @@ print("Port recognized: ", port)
 UPLOAD_FOLDER = 'uploads/images'
 SAVE_FOLDER = 'uploads/model_images'
 JOIN_FOLDER = 'uploads/join_images'
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'nii'])
+
 
 #Initialize the application service (FLASK)
 app = Flask(__name__)

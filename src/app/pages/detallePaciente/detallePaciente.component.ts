@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { StorageService } from 'src/app/services/storage.service';
 import { FileItem } from './models/file-item';
-import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { PacienteModel, obtenerPacienteDb } from 'src/firebase/database/paciente';
 @Component({

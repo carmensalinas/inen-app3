@@ -28,10 +28,12 @@ export class NavbarComponent implements OnInit {
           this.roleToManage = "Tecnicos de Radiologia"
           break;
       }
+
     }
 
   }
   logout(){
+    this.role=-1;
     this.authfirebase.signOut();
     localStorage.removeItem("user")
     window.location.href = '/home'

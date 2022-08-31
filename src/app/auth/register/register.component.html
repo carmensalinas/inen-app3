@@ -106,7 +106,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="fotoPerfil" class="form-label">Subir Foto de Perfil</label>
-                                <input class="form-control" type="file" formControlName="fotoPerfil" id="fotoPerfil" name="fotoPerfil">
+                                <input class="form-control" type="file" id="fotoPerfil" (change)="onFileChange($event)">
                             </div>
                         </div>
 

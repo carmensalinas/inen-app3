@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { user } from '@angular/fire/auth';
 import { FormGroup, FormControl} from '@angular/forms';
 import { Router } from '@angular/router';
 import { loginApp } from 'src/firebase/auth/authentication';
@@ -25,7 +26,12 @@ export class LoginComponent implements OnInit {
     if(userLogged){
       localStorage.setItem("user",JSON.stringify(userLogged))
       window.alert("Bienvenido")
-      window.location.href = userLogged.rolCode === 3? '/pacientes' : '/register'
+      if(userLogged.primerRegistro===0){
+        window.location.href = '/restart'
+      }
+      else{
+          window.location.href = (userLogged.rolCode === 2 || userLogged.rolCode === 3) ? '/lista-pacientes' :'/register'
+      }
     }else{
       window.alert("Usuario o contraseña incorrecta")
     }

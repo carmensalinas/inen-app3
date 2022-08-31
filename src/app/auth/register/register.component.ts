@@ -28,9 +28,8 @@ export class RegisterComponent {
     fecNacimiento :  new FormControl(''),
     distrito :  new FormControl(''),
     confirmarPassword :  new FormControl(''),
-    fotoPerfil:  new FormControl(''),
   })
-
+  fotoPerfil:File;
   tipoDocumentos = ['DNI', 'Carnet de Extranjería', 'Pasaporte'];
   tipoGeneros = ['Masculino', 'Femenino'];
   distritos = ['Cercado de Lima', 'Breña', 'Miraflores', 'San Borja', 'Ventanilla'];
@@ -79,17 +78,24 @@ export class RegisterComponent {
       direccion : this.registerJefesForm.value.direccion,
       fecNacimiento : this.registerJefesForm.value.fecNacimiento,
       distrito : this.registerJefesForm.value.distrito,
-      fotoPerfil : this.registerJefesForm.value.fotoPerfil
+      fotoPerfilRaw : this.fotoPerfil
     }
 
     const create = await signInApp(newUser)
-      if(create.success){
-        window.alert("Creado correctamente!")
-        //do -some
-      }else{
-        window.alert(create.message)
-      }
+    if(create.success){
+      window.alert("Creado correctamente!")
+      //do -some
+    }else{
+      window.alert(create.message)
     }
+  }
+
+  onFileChange(event:any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.fotoPerfil = file
+    }
+  }
 
     
 }

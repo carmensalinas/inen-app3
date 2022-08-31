@@ -16,7 +16,6 @@ export class PacienteComponent{
     nombres: new FormControl(''),
     numDocumento : new FormControl(''),
     rolPaciente : new FormControl(''),
-    correo : new FormControl(''),
     password : new FormControl(''),
     edad : new FormControl(''),
     tipoDocumento : new FormControl(''),

@@ -2,10 +2,11 @@ import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } f
 import { getFirebaseApp } from "../config";
 import { createUserFields, getUser, UserModel} from "../database/users";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { PacienteModel } from "../database/paciente";
+import { StorageService } from "src/app/services/storage.service";
+import { uploadPicAndGetUrl } from "../storage/storage";
 
 const auth = getAuth(getFirebaseApp());
-
+let storageSvc: StorageService;
 export const loginApp = async (email:string,password:string):Promise<UserModel>=>{
     let user!:UserModel
     const login: boolean =  await new Promise((resolve)=>{
@@ -61,8 +62,8 @@ export const signInApp = async (userFields: UserModel):Promise<any>=>{
     })
 
     if(!createUserCreds) return {success:false,message:"Email ya registrado, por favor use uno nuevo"}
-
     
+    userFields.fotoPerfil = await uploadPicAndGetUrl(userFields.fotoPerfilRaw as Blob, userFields.email)
 
     const userFieldsCreated = await createUserFields(userFields)
 

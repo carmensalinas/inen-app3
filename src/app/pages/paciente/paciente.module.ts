@@ -13,6 +13,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatListModule} from '@angular/material/list';
 import {MatStepperModule} from '@angular/material/stepper';
+import { EditarPacienteComponent } from './editar-paciente/editar-paciente.component';
 
 const modules = [
   MatButtonModule,
@@ -29,6 +30,7 @@ const modules = [
 @NgModule({
   declarations: [
     PacienteComponent,
+    EditarPacienteComponent,
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,6 @@
-import { doc, getDoc, setDoc, addDoc, collection, query, where, getDocs } from "firebase/firestore";
+import { doc, getDoc, setDoc, addDoc, collection, query, where, getDocs, updateDoc } from "firebase/firestore";
 import { getDB } from "./config";
+import { UserModel } from "./users";
 
 // Add a new document in collection "cities"
 
@@ -12,11 +13,11 @@ export interface PacienteModel{
   edad : number,
   tipoGenero : string,
   telfijo : number, 
-  telcel : String, 
-  direccion : String,
+  telcel : string, 
+  direccion : string,
   fecNacimiento : Date, 
-  distrito : String,
-  radiologo_id: String,
+  distrito : string,
+  radiologo_id: string,
 }
 
 export const crearPacienteDb =  async(paciente: PacienteModel)=>{
@@ -74,9 +75,36 @@ export const obtenerPacienteDb = async (id:string): Promise<PacienteModel>=>{
     const docSnap = await getDoc(docRef);
     if(docSnap.exists()){
       paciente =  docSnap.data() as PacienteModel
+      paciente.id = docSnap.id
     }
   } catch (error) {
     console.log(error);
   }
   return paciente
+}
+
+export const actualizarPacienteDb = async(paciente: PacienteModel)=>{
+  try{
+
+    const pacienteRef = doc(getDB(),"pacientes", paciente.id!);
+    const updated = await updateDoc(pacienteRef, {
+      nombres:paciente.nombres || "",
+      apellidos:paciente.apellidos || "",
+      tipoDocumento : paciente.tipoDocumento|| "",
+      numDocumento : paciente.numDocumento|| "",
+      edad : paciente.edad|| "",
+      tipoGenero : paciente.tipoGenero|| "",
+      telfijo :paciente.telfijo|| "", 
+      telcel :paciente.telcel|| "",
+      direccion :paciente.direccion|| "",
+      fecNacimiento :paciente.fecNacimiento|| "", 
+      distrito :paciente.distrito|| "",
+      radiologo_id: paciente.radiologo_id,
+    })
+
+  }catch (error) {
+    console.log(error);
+  }
+  return paciente
+
 }

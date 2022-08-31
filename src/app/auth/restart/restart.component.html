@@ -1,0 +1,19 @@
+<div class="container" style="padding-top: 180px; padding-bottom: 180px;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 mx-auto">
+            <div class="card" style="background-color: rgba(31, 31, 29, 0.658);">
+                <div class="card-body text-center">
+                    <h1 style="color: white; font-weight: bold;">INGRESO</h1>
+                    <form [formGroup]="restartForm" (ngSubmit)="restart()">
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Correo" formControlName="email" required>
+                        </div>
+                       <button type="submit" class="btn btn-lg btn-primary btn-block" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Cambiar Contraseña</button>
+                    </form>
+                    <p style="height: 99px;"></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

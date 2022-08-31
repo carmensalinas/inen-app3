@@ -1,7 +1,6 @@
-import { collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, setDoc, where, updateDoc } from "firebase/firestore";
+import { FileItem } from "src/app/pages/detallePaciente/models/file-item";
 import { getDB } from "./config";
-
-// Add a new document in collection "cities"
 
 export interface UserModel{
   email: string,
@@ -15,18 +14,18 @@ export interface UserModel{
   edad : number,
   tipoGenero : string,
   telfijo : number, 
-  telcel : String, 
-  direccion : String,
+  telcel : string, 
+  direccion : string,
   fecNacimiento : Date, 
-  distrito : String, 
-  fotoPerfil : File,
+  distrito : string, 
+  fotoPerfil?: string,
+  fotoPerfilRaw?: Blob,
   primerRegistro? : number
 }
 
 export const createUserFields = async(userFields: UserModel)=>{
   try {
-    const db = getDB()
-    await setDoc(doc(db, "users",userFields.email), {
+    await setDoc(doc(getDB(), "users",userFields.email), {
       email:userFields.email,
       nombres:userFields.nombres || "",
       apellidos:userFields.apellidos || "",
@@ -56,8 +55,7 @@ export const createUserFields = async(userFields: UserModel)=>{
 export const getUser = async (email:string): Promise<UserModel>=>{
   let user!:UserModel;
   try {
-    const db = getDB()
-    const docRef = doc(db, "users", email);
+    const docRef = doc(getDB(), "users", email);
     const docSnap = await getDoc(docRef);
     if(docSnap.exists()){
       user =  docSnap.data() as UserModel
@@ -71,13 +69,12 @@ export const getUser = async (email:string): Promise<UserModel>=>{
 export const obtenerRadiologosDb = async (): Promise<UserModel[]>=>{
   let users:UserModel[] = [];
   try {
-    const db = getDB()
-    const q = query(collection(db, "users"), where('rolCode','==',2))
+    const q = query(collection(getDB(), "users"), where('rolCode','==',2))
     const docsSnap = await getDocs(q)
     
     if(!docsSnap.empty){
       docsSnap.forEach((doc:any) => {
-        console.log(doc.data())
+
         users.push(doc.data())
       });
     }
@@ -85,5 +82,16 @@ export const obtenerRadiologosDb = async (): Promise<UserModel[]>=>{
     console.log("db error: ",error);
   }
   return users
+}
+
+export const confirmUser = async (user_id: string) => {
+  try {
+    const userRef = doc(getDB(),"users", user_id);
+    const updated = await updateDoc(userRef, {
+      primerRegistro: 1
+    });
+  } catch (error) {
+    console.log("Error confirming user ", user_id, " => ",error);
+  }
 }
 

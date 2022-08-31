@@ -35,6 +35,7 @@ import { MatRippleModule } from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatListModule} from '@angular/material/list';
+import { RestartComponent } from './auth/restart/restart.component';
 
 const modules = [
   MatButtonModule,
@@ -55,7 +56,8 @@ const modules = [
     HistorialComponent,
     ListaPacientesComponent,
     EditarHistorialComponent,
-    NavbarComponent
+    NavbarComponent,
+    RestartComponent
   ],
   imports: [
     BrowserModule,

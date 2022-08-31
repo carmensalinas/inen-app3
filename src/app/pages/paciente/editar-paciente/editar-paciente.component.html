@@ -1,0 +1,117 @@
+<div class="" style="padding-top: 20px">
+    <div style="background:white; font-size: 24px; font-weight: bold;">
+        <span>Editar Paciente: </span>
+        <p></p>
+    </div>
+    <div class="row">
+        <div class="col-10">
+            <form class="row">
+                <div class="container">
+                    <form [formGroup]="editPacientesForm">
+                        <div class="input-group mb-3">
+                            <div class="col-md-4">
+                                <label for="apellidos" class="form-group">Ingrese apellidos</label>
+                                <input type="text" class="form-control" formControlName="apellidos" id="apellidos" name="apellidos" [(ngModel)]="paciente.apellidos">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="nombres" class="form-group">Ingrese Nombres</label>
+                                <input type="text" class="form-control" formControlName="nombres" id="nombres" name="nombres" [(ngModel)]="paciente.nombres">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-group">Sexo</label>
+                                <select formControlName="tipoGenero" class="form-control" id="tipoGenero" aria-label="Default select example">
+                                    <option selected value="">{{paciente.tipoGenero}}</option>
+                                    <option *ngFor ="let genero of tipoGeneros" [value]="genero" >{{genero}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="col-md-4">
+                                <label class="form-group">Tipo de Documento</label>
+                                <select formControlName="tipoDocumento" class="form-control" id="tipoDocumento" aria-label="Default select example">
+                                    <option selected value="">{{paciente.tipoDocumento}}</option>
+                                    <option *ngFor ="let tipodoc of tipoDocumentos" [value]="tipodoc">{{tipodoc}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="numDocumento" class="form-label">N° de Documento</label>
+                                <input type="text" class="form-control" formControlName="numDocumento" id="numDocumento" name="numDocumento" [(ngModel)]="paciente.numDocumento">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="edad" class="form-label">Edad</label>
+                                <input type="number" class="form-control" formControlName="edad" id="edad" name="edad"  [(ngModel)]="paciente.edad">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="col-md-4">
+                                <label class="form-group">Radiólogo Asignado</label>
+                                <select formControlName="radiologo_id" class="form-control" id="radiologo_id" aria-label="Default select example">
+                                    <option selected value="">{{radiologo.nombres}} {{radiologo.apellidos}}</option>
+                                    <option *ngFor ="let radiologo of radiologos" [value]="radiologo.email">{{radiologo.nombres}} {{radiologo.apellidos}}</option>
+                                </select>
+                            </div>
+                           
+                            <div class="col-md-4">
+                                <label class="form-group">Distrito</label>
+                                    <select formControlName="distrito" class="form-control" id="distrito" aria-label="Default select example">
+                                        <option selected value="">{{paciente.distrito}}</option>
+                                        <option  *ngFor ="let distrito of distritos" [value]="distrito"> {{distrito}}</option>
+                                    </select>   
+                                
+                            </div>
+                            <div class="col-md-4">
+                                <label for="direccion" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" formControlName="direccion" id="direccion" name="direccion" [(ngModel)]="paciente.direccion">
+                            </div>
+                            
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="col-md-4">
+                                <label for="telcel" class="form-label">Teléfono Celular</label>
+                                <input type="tel" class="form-control" formControlName="telcel" id="telcel" name="telcel" [(ngModel)]="paciente.telcel">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="telfijo" class="form-label">Teléfono Fijo</label>
+                                <input type="tel" class="form-control" formControlName="telfijo" id="telfijo" name="telfijo" [(ngModel)]="paciente.telfijo" >
+                            </div>
+                            <div class="col-md-4">
+                                <label for="fecNacimiento" class="form-label">Fecha Nacimiento</label>
+                                <input type="date" class="form-control" formControlName="fecNacimiento" id="fecNacimiento" name="fecNacimiento" [(ngModel)]="paciente.fecNacimiento">
+                            </div>
+                        </div>
+                        <p style="height: 40px;"></p>
+
+                        <div class="input-group mb-3">
+                            <div class="col-md-3">
+
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-success" (click) = "actualizarPacientes()">Guardar</button>
+                            </div>
+                            <div class="col-md-2">
+
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-danger">Cancelar</button>
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+                        </div>
+                    </form>
+                    <script>
+                        document.f1.f1t1.value = 30
+                      </script>
+
+
+
+                    <p style="height: 20px;"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    
+    
+    
+    </div>

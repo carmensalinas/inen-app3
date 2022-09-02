@@ -8,29 +8,29 @@
   
 
   <div class="btn-group mr-2 text-center" role="group" aria-label="First group">
-    <button type="button" class="btn btn-primary">A</button> 
-    <button type="button" class="btn btn-primary">B</button>
-    <button type="button" class="btn btn-primary">C</button>
-    <button type="button" class="btn btn-primary">E</button>
-    <button type="button" class="btn btn-primary">F</button>
-    <button type="button" class="btn btn-primary">G</button>
-    <button type="button" class="btn btn-primary">H</button>
-    <button type="button" class="btn btn-primary">I</button>
-    <button type="button" class="btn btn-primary">J</button>
-    <button type="button" class="btn btn-primary">K</button>
-    <button type="button" class="btn btn-primary">M</button>
-    <button type="button" class="btn btn-primary">N</button>
-    <button type="button" class="btn btn-primary">O</button>
-    <button type="button" class="btn btn-primary">P</button>
-    <button type="button" class="btn btn-primary">Q</button>
-    <button type="button" class="btn btn-primary">R</button>
-    <button type="button" class="btn btn-primary">S</button>
-    <button type="button" class="btn btn-primary">T</button>
-    <button type="button" class="btn btn-primary">V</button>
-    <button type="button" class="btn btn-primary">W</button>
-    <button type="button" class="btn btn-primary">X</button>
-    <button type="button" class="btn btn-primary">Y</button>
-    <button type="button" class="btn btn-primary">Z</button>
+    <button type="button" class="btn btn-secondary">A</button> 
+    <button type="button" class="btn btn-secondary">B</button>
+    <button type="button" class="btn btn-secondary">C</button>
+    <button type="button" class="btn btn-secondary">E</button>
+    <button type="button" class="btn btn-secondary">F</button>
+    <button type="button" class="btn btn-secondary">G</button>
+    <button type="button" class="btn btn-secondary">H</button>
+    <button type="button" class="btn btn-secondary">I</button>
+    <button type="button" class="btn btn-secondary">J</button>
+    <button type="button" class="btn btn-secondary">K</button>
+    <button type="button" class="btn btn-secondary">M</button>
+    <button type="button" class="btn btn-secondary">N</button>
+    <button type="button" class="btn btn-secondary">O</button>
+    <button type="button" class="btn btn-secondary">P</button>
+    <button type="button" class="btn btn-secondary">Q</button>
+    <button type="button" class="btn btn-secondary">R</button>
+    <button type="button" class="btn btn-secondary">S</button>
+    <button type="button" class="btn btn-secondary">T</button>
+    <button type="button" class="btn btn-secondary">V</button>
+    <button type="button" class="btn btn-secondary">W</button>
+    <button type="button" class="btn btn-secondary">X</button>
+    <button type="button" class="btn btn-secondary">Y</button>
+    <button type="button" class="btn btn-secondary">Z</button>
 </div>
 <br>
 <br>
@@ -45,9 +45,9 @@
 <br><br><br>
   <div class="row">
     <div class="col-sm-6 col-md-4 portfolio-item border mr-2 " *ngFor="let a of medicos">
-        <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-            <div class="portfolio-hover">
-                <div class="portfolio-hover-content"><h2>Dr(a): {{a.nombre}} </h2></div>
+        <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal" style="text-decoration-color: rgb(40, 40, 134) !important;">
+            <div class="portfolio-hover" style="color: #138496">
+                <div class="portfolio-hover-content" style="color: #138496"><h2>Dr(a): {{a.nombre}} </h2></div>
             </div><img class="img-fluid" src="{{a.foto}}"></a>
         <div class="portfolio-caption">
             <h4>Especialidad: <strong><em> {{a.especialidad}}</em></strong></h4>

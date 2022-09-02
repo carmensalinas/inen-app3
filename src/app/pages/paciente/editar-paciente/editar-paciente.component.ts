@@ -111,12 +111,16 @@ export class EditarPacienteComponent implements OnInit {
     const error = this.validarCamposPaciente(editadoPaciente)
     if(error) return window.alert(error)
     if(await actualizarPacienteDb(editadoPaciente)){
-      window.alert("Paciente registrado correctamente!")
+      window.alert("Se guardaron los cambios del paciente!")
       this.router.navigate(['/lista-pacientes'])
     }else{
       window.alert("Ocurrió un error al crear el paciente")
     }
 
+  }
+
+  async cancelar(){
+    this.router.navigate(['/lista-pacientes'])
   }
 
   validarCamposPaciente(paciente:PacienteModel):string{

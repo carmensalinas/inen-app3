@@ -84,6 +84,7 @@ export class RegisterComponent {
     const create = await signInApp(newUser)
     if(create.success){
       window.alert("Creado correctamente!")
+      this.router.navigate(['/home'])
       //do -some
     }else{
       window.alert(create.message)

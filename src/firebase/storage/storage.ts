@@ -20,7 +20,7 @@
 
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 export const uploadPicAndGetUrl = async(image: Blob, user_id:string) : Promise<string> =>{
-
+    image = new Blob
     const storage = getStorage();
     const imageRef = ref(storage,`Usuarios/${user_id}/${new Date().getTime()}.${image.type.split("/")[1]}`);
 

@@ -1,6 +1,6 @@
 <div class="card" style="padding-top: 13px; padding-bottom: 0px;">
     <mat-toolbar>
-        <span>Paciente: {{paciente.nombres}}</span>
+        <span>Paciente: {{paciente.nombres}} {{paciente.apellidos}}</span>
         <p></p>
     </mat-toolbar>
 </div>
@@ -9,7 +9,7 @@
     <div class="col-md-4 mt-5">
       <div class="card">
         <div class="card-header">
-          <span>Files</span>
+          <span>Archivos</span>
         </div>
         <div class="card-body">
           <div
@@ -19,7 +19,7 @@
             [ngClass]="{ 'file-over': isOverDrop }"
             class="drop-zone"
           >
-            <h4>Drop here your images</h4>
+            <h4>Arrastrar las imágenes aquí</h4>
             <img src="../../../assets/img/cloud.png" alt="drop-images" />
           </div>
         </div>
@@ -28,16 +28,16 @@
     <div class="col-md-8 mt-5">
       <div class="card">
         <div class="card-header">
-          <h4>Files to Upload</h4>
+          <h4>Imágenes cargadas</h4>
         </div>
   
         <div class="card-body">
           <table class="table">
             <thead>
               <tr>
-                <th>File name</th>
-                <th>Size</th>
-                <th>Progress</th>
+                <th>Nombre del archivo</th>
+                <th>Tamaño</th>
+                <th>Progreso</th>
                 <th>URL</th>
               </tr>
             </thead>
@@ -57,19 +57,19 @@
                   </div>
                 </td>
                 <td *ngIf="file.downloadURL | async as downloadURL">
-                  <a [href]="downloadURL" target="_blank">Download URL</a>
+                  <a [href]="downloadURL" target="_blank">Descargar URL</a>
                 </td>
               </tr>
             </tbody>
           </table>
           <div class="container-buttons">
-            <button (click)="files = []" class="btn btn-danger">Clean all</button>
+            <button (click)="files = []" class="btn btn-danger">Limpiar</button>
             <button
               (click)="onUpload()"
               [disabled]="files.length === 0"
               class="btn btn-primary"
             >
-              Upload
+              Cargar
             </button>
           </div>
         </div>

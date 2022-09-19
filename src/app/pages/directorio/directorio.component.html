@@ -5,15 +5,15 @@
 </mat-toolbar>
 
 <div class="input-group rounded col-8 float-right" >
-    <input type="search" class="form-control rounded" placeholder="Buscar...." aria-label="Search" aria-describedby="search-addon" />
+    <input type="search" class="form-control rounded" name="filterMedico" placeholder="Buscar..." aria-label="Search" aria-describedby="search-addon" [(ngModel)]="filterMedico">
     <span class="input-group-text border-0" id="search-addon">
-      <i class="fas fa-search"></i>
+      <i class="fa fa-search"></i>
     </span>
     <br>
   </div>
 <br><br><br>
   <div class="row">
-    <div class="col-sm-6 col-md-4 portfolio-item border mr-2 " *ngFor="let a of medicos" >
+    <div class="col-sm-6 col-md-4 portfolio-item border mr-2 " *ngFor="let a of medicos  | filter:filterMedico" >
       <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal" style="text-decoration-color: rgb(40, 40, 134) !important;">
       <div class="portfolio-hover" style="color: #138496">
                 <div class="portfolio-hover-content" style="color: #138496">

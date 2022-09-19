@@ -13,7 +13,7 @@ export class DirectorioComponent implements OnInit {
   show: boolean = true;
 
 
-
+  filterMedico = '';
   medicos: UserModel[] =  []
   rolName: string = '';
   async ngOnInit(): Promise<void> {

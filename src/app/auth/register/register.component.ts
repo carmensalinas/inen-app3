@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl} from '@angular/forms';
 import { Router } from '@angular/router';
 import { loginApp, signInApp } from 'src/firebase/auth/authentication';
 import { UserModel } from 'src/firebase/database/users';
-// import { prueba } from '../login/login.component';
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { finalize, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +31,8 @@ export class RegisterComponent {
     distrito :  new FormControl(''),
     confirmarPassword :  new FormControl(''),
   })
-  fotoPerfil:File;
+
+  
   tipoDocumentos = ['DNI', 'Carnet de Extranjería', 'Pasaporte'];
   tipoGeneros = ['Masculino', 'Femenino'];
   distritos = ['Cercado de Lima', 'Breña', 'Miraflores', 'San Borja', 'Ventanilla'];
@@ -38,7 +41,10 @@ export class RegisterComponent {
   userRolCode!:number
 
   
-  constructor(private router : Router) { }
+  constructor(private router : Router, private storage: AngularFireStorage) { }
+  @ViewChild('imageUser') inputImageUser: ElementRef;
+  uploadPercent!: Observable<any>;
+  urlImage:Observable<string>;
 
   ngOnInit(): void {
     const user = localStorage.getItem("user")
@@ -61,6 +67,7 @@ export class RegisterComponent {
   }
 
 
+
   async registerUser(){
     let newUser:UserModel={
       email: this.registerJefesForm.value.correo,
@@ -78,7 +85,7 @@ export class RegisterComponent {
       direccion : this.registerJefesForm.value.direccion,
       fecNacimiento : this.registerJefesForm.value.fecNacimiento,
       distrito : this.registerJefesForm.value.distrito,
-      fotoPerfilRaw : this.fotoPerfil
+      fotoPerfil : this.inputImageUser.nativeElement.value
     }
 
     const create = await signInApp(newUser)
@@ -91,11 +98,18 @@ export class RegisterComponent {
     }
   }
 
+
   onFileChange(event:any) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.fotoPerfil = file
-    }
+    const file = event.target.files[0];
+    const user = this.registerJefesForm.value.correo;
+    const filePath= `Usuarios/${user}/${file.name.replace(" ", "")}`
+    const ref = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+    this.uploadPercent = task.percentageChanges();
+    console.log(this.uploadPercent);
+    task.snapshotChanges().pipe(finalize(() => this.urlImage = ref.getDownloadURL())).subscribe();
+
+
   }
 
     

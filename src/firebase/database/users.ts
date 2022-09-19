@@ -1,4 +1,5 @@
 import { collection, doc, getDoc, getDocs, query, setDoc, where, updateDoc } from "firebase/firestore";
+import { Observable } from "rxjs";
 import { FileItem } from "src/app/pages/detallePaciente/models/file-item";
 import { getDB } from "./config";
 
@@ -19,7 +20,7 @@ export interface UserModel{
   fecNacimiento : Date, 
   distrito : string, 
   fotoPerfil?: string,
-  fotoPerfilRaw?: Blob,
+  fotoPerfilRaw?: Observable<string>,
   primerRegistro? : number
 }
 
@@ -70,6 +71,24 @@ export const obtenerRadiologosDb = async (): Promise<UserModel[]>=>{
   let users:UserModel[] = [];
   try {
     const q = query(collection(getDB(), "users"), where('rolCode','==',2))
+    const docsSnap = await getDocs(q)
+    
+    if(!docsSnap.empty){
+      docsSnap.forEach((doc:any) => {
+
+        users.push(doc.data())
+      });
+    }
+  } catch (error) {
+    console.log("db error: ",error);
+  }
+  return users
+}
+
+export const obtenerMedicosDb = async (): Promise<UserModel[]>=>{
+  let users:UserModel[] = [];
+  try {
+    const q = query(collection(getDB(), "users"), where('rolCode', 'in', [2, 3]))
     const docsSnap = await getDocs(q)
     
     if(!docsSnap.empty){

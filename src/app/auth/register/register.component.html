@@ -105,9 +105,9 @@
                                 <label for="confirmarPassword" class="form-label">Confirmar Contraseña</label>
                                 <input type="password" name="confirmarPassword" formControlName="confirmarPassword" id="confirmarPassword" placeholder="Repita su contraseña" class="form-control">
                             </div>
-                            <div class="col-md-4">
+                            <div class="form-group" class="col-md-4">
                                 <label for="fotoPerfil" class="form-label">Subir Foto de Perfil</label>
-                                <input class="form-control" type="file" id="fotoPerfil" (change)="onFileChange($event)">
+                                <input type="file" id="fotoPerfil" (change)="onFileChange($event)">
                             </div>
                         </div>
 
@@ -115,10 +115,19 @@
 
                         <div class="input-group mb-3">
                             <div class="col-md-3">
-
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-success"
+                                      role="progressbar" [style.width]="(uploadPercent | async) +'%'">
+                                    </div>
+                                  </div>
                             </div>
                             <div class="col-md-2">
-                                <button type="submit" class="btn btn-success">Registrar</button>
+                                <input #imageUser type="hidden" [value]="urlImage | async">
+                                <button *ngIf="urlImage | async; else btnDisabled" type="submit" class="btn btn-success">Registrar</button>
+                                <ng-template #btnDisabled>
+                                    <button type="submit" disabled=true class="btn btn-lg btn-secondary btn-block">Register</button>
+                                  </ng-template>
+                            
                             </div>
                             <div class="col-md-2">
 

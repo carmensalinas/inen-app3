@@ -63,7 +63,7 @@ export const signInApp = async (userFields: UserModel):Promise<any>=>{
 
     if(!createUserCreds) return {success:false,message:"Email ya registrado, por favor use uno nuevo"}
     
-    userFields.fotoPerfil = await uploadPicAndGetUrl(userFields.fotoPerfilRaw as Blob, userFields.email)
+    //userFields.fotoPerfil = await uploadPicAndGetUrl(userFields.fotoPerfilRaw as Blob, userFields.email)
 
     const userFieldsCreated = await createUserFields(userFields)
 

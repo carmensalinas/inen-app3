@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   constructor( private router : Router, private authfirebase : AngularFireAuth) { }
 
   ngOnInit(): void {
+    
     const user = localStorage.getItem("user")
     if(user){
       this.role = JSON.parse(user).rolCode
@@ -27,6 +28,8 @@ export class NavbarComponent implements OnInit {
         case 2:
           this.roleToManage = "Tecnicos de Radiologia"
           break;
+          default:
+            localStorage.removeItem("user")
       }
 
     }

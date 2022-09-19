@@ -36,6 +36,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatListModule} from '@angular/material/list';
 import { RestartComponent } from './auth/restart/restart.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 const modules = [
   MatButtonModule,
@@ -57,7 +58,8 @@ const modules = [
     ListaPacientesComponent,
     EditarHistorialComponent,
     NavbarComponent,
-    RestartComponent
+    RestartComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

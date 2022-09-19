@@ -5,9 +5,9 @@
     </mat-toolbar>
      
   <div class="input-group rounded col-4 float-right" >
-    <input type="search" class="form-control rounded" placeholder="Buscar..." aria-label="Search" aria-describedby="search-addon" />
+    <input type="search" class="form-control rounded" name="filterPaciente" placeholder="Buscar..." aria-label="Search" aria-describedby="search-addon" [(ngModel)]="filterPaciente">
       <span class="input-group-text border-0" id="search-addon">
-        <i class="fas fa-search"></i>
+        <i class="fa fa-search"></i>
       </span>
       <br>
   </div>
@@ -27,7 +27,7 @@
           </tr>
       </thead>
       <tbody>
-        <tr *ngFor=" let paci of pacientes " >
+        <tr *ngFor=" let paci of pacientes | filter:filterPaciente" >
           <td class="align-middle">{{paci.nombres}} {{paci.apellidos}}</td>
           <td class="align-middle">{{paci.edad}}</td>
           <td class="align-middle">{{paci.numDocumento}}</td>

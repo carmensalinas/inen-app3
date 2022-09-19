@@ -12,7 +12,7 @@ export class ListaPacientesComponent implements OnInit {
     constructor() { }
 
     pacientes: PacienteModel[] =  []
-
+    filterPaciente = '';
     async ngOnInit(): Promise<void> {
         const user = JSON.parse(localStorage.getItem("user")||"{}") as UserModel
         this.pacientes = await obtenerPacientesDb(user.rolCode === 2? user.email : "")

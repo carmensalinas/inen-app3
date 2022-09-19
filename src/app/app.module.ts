@@ -37,6 +37,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatListModule} from '@angular/material/list';
 import { RestartComponent } from './auth/restart/restart.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 const modules = [
   MatButtonModule,
@@ -73,6 +74,7 @@ const modules = [
     MatPaginatorModule,
     CommonModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

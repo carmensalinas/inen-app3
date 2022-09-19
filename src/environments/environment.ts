@@ -19,7 +19,8 @@ export const environment = {
     storageBucket: "inen-app.appspot.com",
     messagingSenderId: "890512646608",
     appId: "1:890512646608:web:27a50684ae5175571319d5"
-  }
+  },
+  api: 'http://34.125.31.26:5000/'
 };
 
 /*

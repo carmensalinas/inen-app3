@@ -3,6 +3,7 @@ import { StorageService } from 'src/app/services/storage.service';
 import { FileItem } from './models/file-item';
 import { ActivatedRoute } from '@angular/router';
 import { PacienteModel, obtenerPacienteDb } from 'src/firebase/database/paciente';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-detallePaciente',
   templateUrl: './detallePaciente.component.html',
@@ -39,13 +40,17 @@ export class DetallePacienteComponent {
     })
   }
 
+  public  archivos : any = []
+  imagenes : string = ''
   async ngOnInit(): Promise<void> {
     this.paciente = await obtenerPacienteDb(this.pacienteId)
   }
 
   onUpload(): void {
-    this.storageSvc.uploadImage(this.files, this.pacienteId);
+    this.imagenes = 'ok'
+    this.storageSvc.uploadImage(this.files, this.pacienteId, this.archivos);
   }
+
 
  
 

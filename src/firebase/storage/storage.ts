@@ -5,7 +5,7 @@ export const uploadPicAndGetUrl = async(image: Blob, user_id:string) : Promise<s
     const storage = getStorage();
     const user = JSON.parse(localStorage.getItem("user")||"{}") as UserModel
     
-    const imageRef = ref(storage,`Usuarios/${user_id}/${new Date().getTime()}.jpg`);
+    const imageRef = ref(storage,`Usuarios/${user_id}/${new Date().getTime()}_${image.type.split("/")[1]}`);
     return await new Promise(resolve=>{
         uploadBytes(imageRef, image).then((snapshot) => {
             getDownloadURL(imageRef).then(url=> resolve(url))

@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 export class DetallePacienteComponent {
 
   userName ='';
+  result:string;
   files: FileItem[] = [];
   isOverDrop = false;
   pacienteId:"";
@@ -46,9 +47,9 @@ export class DetallePacienteComponent {
     this.paciente = await obtenerPacienteDb(this.pacienteId)
   }
 
-  onUpload(): void {
+  async onUpload(): Promise<void>{
     this.imagenes = 'ok'
-    this.storageSvc.uploadImage(this.files, this.pacienteId, this.archivos);
+    this.result = await this.storageSvc.uploadImage(this.files, this.pacienteId, this.archivos);
   }
 
 

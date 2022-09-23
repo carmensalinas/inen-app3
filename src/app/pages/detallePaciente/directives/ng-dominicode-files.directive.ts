@@ -58,8 +58,8 @@ export class NgDominicodeFilesDirective extends ImageValidator {
 
   private canBeUploaded(file: File): boolean {
     if (
-      !this.checkDropped(file.name, this.files) &&
-      this.validateType(file.type)
+      !this.checkDropped(file.name, this.files) //&&
+      //this.validateType(file.type)
     ) {
       return true;
     } else {

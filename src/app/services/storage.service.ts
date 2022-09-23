@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { finalize } from 'rxjs/operators';
 import { FileItem } from '../pages/detallePaciente/models/file-item';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 firebase.initializeApp(environment.firebaseConfig)
 
 
@@ -19,9 +20,9 @@ export class StorageService {
     
   }
 
-  resultados : any = []
-  imagenesProstata = new FormData();
-  uploadImage(images: FileItem[], paciente_id:string, archivoss: any) {
+  resultados : Blob
+  imagenesProstata: any = new FormData();
+  async uploadImage(images: FileItem[], paciente_id:string, archivoss: any): Promise<string> {
     
     for (const item of images) {
       item.uploading = true;
@@ -42,15 +43,27 @@ export class StorageService {
         )
         .subscribe();
     }
-    archivoss.push('https://c.tenor.com/XK37GfbV0g8AAAAC/loading-cargando.gif');
-    console.log(archivoss);
-    this.http.post(`http://34.125.127.3:5000/model/predict/`, this.imagenesProstata)
-        .subscribe(res=>{
-          console.log('respuesta servidor: ',res);
-          delete archivoss[0]
-          archivoss.push('')
-          this.resultados = ''
-        })
+
+    const requestOptions: Object = {
+      responseType: 'blob' 
+    }
+    await new Promise(resolve=>setTimeout(resolve,5000))
+    return await new Promise((resolve,reject)=>{
+      this.http.post<any>(`http://34.125.67.136:5000/model/predict/`, this.imagenesProstata, requestOptions)
+          .subscribe(res=>{
+            let reader = new FileReader()
+            reader.readAsDataURL(res)
+            reader.onloadend = function() {
+              var base64data = String(reader.result);
+              resolve(base64data)
+              return;
+            }
+          },error=>{
+            reject(error)
+          })
+    })
   }
 
+
+  
 }

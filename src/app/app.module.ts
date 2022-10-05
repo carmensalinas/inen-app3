@@ -87,7 +87,8 @@ const modules = [
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase),
-    modules
+    modules,
+
    
   ],
   exports: [

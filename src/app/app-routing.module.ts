@@ -7,6 +7,7 @@ import { ListaPacientesComponent } from './pages/lista-pacientes/lista-pacientes
 import { EditarHistorialComponent } from './pages/historial/editar-historial/editar-historial.component';
 import { RestartComponent } from './auth/restart/restart.component';
 import { EditarPacienteComponent } from './pages/paciente/editar-paciente/editar-paciente.component';
+import { EditarMedicoComponent } from './auth/register/editar-medico/editar-medico.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,9 @@ const routes: Routes = [
   { path: 'register', loadChildren: () => import('./auth/register/register.module').then(m => m.RegisterModule) },
   { path: 'paciente', loadChildren: () => import('./pages/paciente/paciente.module').then(m => m.PacienteModule) },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  {path:"editar-paciente/:id",component:EditarPacienteComponent}
+  { path:"editar-paciente/:id",component:EditarPacienteComponent},
+  { path: 'editar-medico/:id', component:EditarMedicoComponent},
+
 ];
 
 @NgModule({

@@ -36,5 +36,7 @@ export class DirectorioComponent implements OnInit {
     }
     return this.rolName;
   }
-  
+  desactivar(idMedico:any){
+    console.log("id de medico es: ",idMedico);
+  }
 }

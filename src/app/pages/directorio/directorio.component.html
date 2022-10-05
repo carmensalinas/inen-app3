@@ -43,6 +43,15 @@
                 <em>{{a.telcel}}</em><br>
               </strong>
             </p>
+            <p class="text-muted">
+              <strong *ngIf="a.rolCode==0" >
+                <a href="/editar-medico/{{a.email}}" class="btn btn-outline-dark"><i class="fa fa-pencil"></i></a>
+              </strong>
+              <strong>
+                <button (click)="desactivar(a.email)" class="btn btn-danger">Desactivar</button>
+              </strong>
+            </p>
+            
       </div>
     </div>
   </div>

@@ -13,6 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
+import { BrowserModule } from '@angular/platform-browser';
+import { EditarMedicoComponent } from './editar-medico/editar-medico.component';
 
 const modules = [
   MatButtonModule,
@@ -23,18 +25,21 @@ const modules = [
   MatAutocompleteModule,
   MatListModule ,
   MatStepperModule,
-  MatSelectModule
+  MatSelectModule,
+  FormsModule,
+  ReactiveFormsModule,
+  CommonModule
 ];
 @NgModule({
   declarations: [
-    RegisterComponent,
-
+    EditarMedicoComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,
     RegisterRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
+
     modules
   ],
   exports: [

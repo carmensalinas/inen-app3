@@ -114,3 +114,36 @@ export const confirmUser = async (user_id: string) => {
   }
 }
 
+export const obtenerMedicoDb = async (id:string): Promise<UserModel>=>{
+  let medico!:UserModel;
+  try {
+    const db = getDB()
+    const docRef = doc(db, "users", id);
+    const docSnap = await getDoc(docRef);
+    if(docSnap.exists()){
+      medico =  docSnap.data() as UserModel
+      medico.email = docSnap.id
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return medico
+}
+
+export const actualizarMedicoDb = async(medico_id: UserModel)=>{
+  let medicos:UserModel[] = [];
+  try {
+    const db = getDB()
+    let docsSnap:any;
+    docsSnap = await getDocs(query(collection(db, "users"), where('id','==',medico_id)))
+    if(!docsSnap.empty){
+      docsSnap.forEach((doc:any) => {
+        medicos.push({...doc.data(),id:doc.id})
+      });
+    }
+  } catch (error) {
+    console.log("db error: ",error);
+  }
+  return medicos
+}
+

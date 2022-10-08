@@ -21,7 +21,8 @@ export interface UserModel{
   distrito : string, 
   fotoPerfil?: string,
   fotoPerfilRaw?: Observable<string>,
-  primerRegistro? : number
+  primerRegistro? : number,
+  status : boolean,
 }
 
 export const createUserFields = async(userFields: UserModel)=>{
@@ -43,6 +44,7 @@ export const createUserFields = async(userFields: UserModel)=>{
       distrito :userFields.distrito|| "",
       fotoPerfil : userFields.fotoPerfil|| "",
       primerRegistro : 0,
+      status : userFields.status,
     });
     return true
   } catch (error) {
@@ -88,7 +90,7 @@ export const obtenerRadiologosDb = async (): Promise<UserModel[]>=>{
 export const obtenerMedicosDb = async (): Promise<UserModel[]>=>{
   let users:UserModel[] = [];
   try {
-    const q = query(collection(getDB(), "users"), where('rolCode', 'in', [2, 3]))
+    const q = query(collection(getDB(), "users"), where('rolCode', 'in', [2, 3]),where('status','==',true))
     const docsSnap = await getDocs(q)
     
     if(!docsSnap.empty){
@@ -114,3 +116,44 @@ export const confirmUser = async (user_id: string) => {
   }
 }
 
+export const obtenerMedicoDb = async (id:string): Promise<UserModel>=>{
+  let medico!:UserModel;
+  try {
+    const db = getDB()
+    const docRef = doc(db, "users", id);
+    const docSnap = await getDoc(docRef);
+    if(docSnap.exists()){
+      medico =  docSnap.data() as UserModel
+      medico.email = docSnap.id
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return medico
+}
+
+export const actualizarStatusMedicoDb = async(medico: UserModel)=>{
+  try{
+    const medicoRef = doc(getDB(),"users", medico.email!);
+    const updated = await updateDoc(medicoRef, {
+      status :medico.status|| "",
+    })
+
+  }catch (error) {
+    console.log(error);
+  }
+  return medico
+}
+
+export const actualizarMedicoDb = async(medico: UserModel)=>{
+  try{
+    const medicoRef = doc(getDB(),"users", medico.email!);
+    const updated = await updateDoc(medicoRef, {
+      status :medico.status|| "",
+    })
+
+  }catch (error) {
+    console.log(error);
+  }
+  return medico
+}

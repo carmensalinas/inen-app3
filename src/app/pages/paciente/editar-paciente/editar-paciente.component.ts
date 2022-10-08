@@ -67,6 +67,7 @@ export class EditarPacienteComponent implements OnInit {
     fecNacimiento : new Date(0), 
     distrito : '',
     primerRegistro : 0,
+    status : true,
   }
   tipoDocumentos = ['DNI', 'Carnet de Extranjería', 'Pasaporte'];
   tipoGeneros = ['Masculino'];

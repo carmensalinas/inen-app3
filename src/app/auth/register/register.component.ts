@@ -85,7 +85,8 @@ export class RegisterComponent {
       direccion : this.registerJefesForm.value.direccion,
       fecNacimiento : this.registerJefesForm.value.fecNacimiento,
       distrito : this.registerJefesForm.value.distrito,
-      fotoPerfil : this.inputImageUser.nativeElement.value
+      fotoPerfil : this.inputImageUser.nativeElement.value,
+      status : true,
     }
 
     const create = await signInApp(newUser)

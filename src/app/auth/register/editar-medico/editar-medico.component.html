@@ -1,0 +1,146 @@
+<div class="" style="padding-top: 20px">
+    <div class="row">
+        <div class="col-2">
+                <div style="background:white; font-size: 24px; font-weight: bold;">
+                    <span>Editar Perfil</span>
+                    <p></p>
+                </div>
+        </div>
+        <div class="col-10">
+            <form class="row">
+                <div class="container">
+                    <form [formGroup]="editMedicoForm">
+                        <div class="input-group mb-3">
+                            <div class="col-md-4">
+                                <label for="apellidos" class="form-group">Ingrese apellidos</label>
+                                <input type="text" class="form-control" formControlName="apellidos" id="apellidos" name="apellidos" [(ngModel)]="medico.apellidos">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="nombres" class="form-group">Ingrese Nombres</label>
+                                <input type="text" class="form-control" formControlName="nombres" id="nombres" name="nombres" [(ngModel)]="medico.nombres">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="numeroColegiatura" class="form-group">Ingrese número de colegiatura</label>
+                                <input type="text" class="form-control" formControlName="numeroColegiatura" id="numeroColegiatura" name="numeroColegiatura" [(ngModel)]="medico.numeroColegiatura">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="col-md-4">
+                                <label class="form-group">Tipo de Documento</label>
+                                <select formControlName="tipoDocumento" class="form-control" id="tipoDocumento" aria-label="Default select example">
+                                    <option selected value="">{{medico.tipoDocumento}}</option>
+                                    <option *ngFor ="let tipodoc of tipoDocumentos" [value]="tipodoc">{{tipodoc}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="numDocumento" class="form-label">N° de Documento</label>
+                                <input type="text" class="form-control" formControlName="numDocumento" id="numDocumento" name="numDocumento" [(ngModel)]="medico.numDocumento">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="edad" class="form-label">Edad</label>
+                                <input type="number" class="form-control" formControlName="edad" id="edad" name="edad" [(ngModel)]="medico.edad">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="col-md-4">
+                                <label for="rol" class="form-label">Tipo de Usuario</label>
+                                <input class="form-control" type="string" placeholder="{{roleToManage}}" readonly> 
+                            </div>
+                           
+                            <div class="col-md-4">
+                                <label class="form-group">Sexo</label>
+                                <select formControlName="tipoGenero" class="form-control" id="tipoGenero" aria-label="Default select example">
+                                    <option selected value="">{{medico.tipoGenero}}</option>
+                                    <option *ngFor ="let genero of tipoGeneros" [value]="genero">{{genero}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="telfijo" class="form-label">Teléfono Fijo</label>
+                                <input type="tel" class="form-control" formControlName="telfijo" id="telfijo" name="telfijo" [(ngModel)]="medico.telfijo">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="col-md-4">
+                                <label for="telcel" class="form-label">Teléfono Celular</label>
+                                <input type="tel" class="form-control" formControlName="telcel" id="telcel" name="telcel" [(ngModel)]="medico.telcel">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="direccion" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" formControlName="direccion" id="direccion" name="direccion" [(ngModel)]="medico.direccion">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="fecNacimiento" class="form-label">Fecha Nacimiento</label>
+                                <input type="date" class="form-control" formControlName="fecNacimiento" id="fecNacimiento" name="fecNacimiento" [(ngModel)]="medico.fecNacimiento">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            
+                            <div class="col-md-4">
+                                <label for="email" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" formControlName="email" id="email" name="email" placeholder="@" [(ngModel)]="medico.email">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" name="password" formControlName="password" id="password" placeholder="Ingrese contraseña" class="form-control" [(ngModel)]="medico.password">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-group">Distrito</label>
+                                    <select formControlName="distrito" class="form-control" id="distrito" aria-label="Default select example">
+                                        <option selected value="">{{medico.distrito}}</option>
+                                        <option  *ngFor ="let distrito of distritos" [value]="distrito"> {{distrito}}</option>
+                                    </select>   
+                                
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="col-md-4">
+                                
+                            </div>
+                            <div class="col-md-4">
+                                <label for="confirmarPassword" class="form-label">Confirmar Contraseña</label>
+                                <input type="password" name="confirmarPassword" formControlName="confirmarPassword" id="confirmarPassword" placeholder="Repita su contraseña" class="form-control" [(ngModel)]="medico.password">
+                            </div>
+                            <div class="form-group" class="col-md-4">
+                                <label for="fotoPerfil" class="form-label">Subir Foto de Perfil</label>
+                                <input type="file" id="fotoPerfil" (change)="onFileChange($event)">
+                            </div>
+                        </div>
+
+                        <p style="height: 40px;"></p>
+
+                        <div class="input-group mb-3">
+                            <div class="col-md-3">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-success"
+                                      role="progressbar" [style.width]="(uploadPercent | async) +'%'">
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="col-md-2">
+                                <input #imageUser type="hidden" [value]="urlImage | async">
+                                <button *ngIf="urlImage | async; else btnDisabled" type="submit" class="btn btn-success">Registrar</button>
+                                <ng-template #btnDisabled>
+                                    <button type="submit" disabled=true class="btn btn-lg btn-secondary btn-block">Register</button>
+                                  </ng-template>
+                            </div>
+                            <div class="col-md-2">
+
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-danger">Cancelar</button>
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+                        </div>
+                    </form>
+                    <p style="height: 20px;"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    
+    
+    
+    </div>

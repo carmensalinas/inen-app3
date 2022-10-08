@@ -21,7 +21,8 @@ export interface UserModel{
   distrito : string, 
   fotoPerfil?: string,
   fotoPerfilRaw?: Observable<string>,
-  primerRegistro? : number
+  primerRegistro? : number,
+  status : boolean,
 }
 
 export const createUserFields = async(userFields: UserModel)=>{
@@ -43,6 +44,7 @@ export const createUserFields = async(userFields: UserModel)=>{
       distrito :userFields.distrito|| "",
       fotoPerfil : userFields.fotoPerfil|| "",
       primerRegistro : 0,
+      status : userFields.status,
     });
     return true
   } catch (error) {
@@ -88,7 +90,7 @@ export const obtenerRadiologosDb = async (): Promise<UserModel[]>=>{
 export const obtenerMedicosDb = async (): Promise<UserModel[]>=>{
   let users:UserModel[] = [];
   try {
-    const q = query(collection(getDB(), "users"), where('rolCode', 'in', [2, 3]))
+    const q = query(collection(getDB(), "users"), where('rolCode', 'in', [2, 3]),where('status','==',true))
     const docsSnap = await getDocs(q)
     
     if(!docsSnap.empty){
@@ -130,20 +132,28 @@ export const obtenerMedicoDb = async (id:string): Promise<UserModel>=>{
   return medico
 }
 
-export const actualizarMedicoDb = async(medico_id: UserModel)=>{
-  let medicos:UserModel[] = [];
-  try {
-    const db = getDB()
-    let docsSnap:any;
-    docsSnap = await getDocs(query(collection(db, "users"), where('id','==',medico_id)))
-    if(!docsSnap.empty){
-      docsSnap.forEach((doc:any) => {
-        medicos.push({...doc.data(),id:doc.id})
-      });
-    }
-  } catch (error) {
-    console.log("db error: ",error);
+export const actualizarStatusMedicoDb = async(medico: UserModel)=>{
+  try{
+    const medicoRef = doc(getDB(),"users", medico.email!);
+    const updated = await updateDoc(medicoRef, {
+      status :medico.status|| "",
+    })
+
+  }catch (error) {
+    console.log(error);
   }
-  return medicos
+  return medico
 }
 
+export const actualizarMedicoDb = async(medico: UserModel)=>{
+  try{
+    const medicoRef = doc(getDB(),"users", medico.email!);
+    const updated = await updateDoc(medicoRef, {
+      status :medico.status|| "",
+    })
+
+  }catch (error) {
+    console.log(error);
+  }
+  return medico
+}

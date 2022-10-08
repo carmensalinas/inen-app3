@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     const userLogged: UserModel = await loginApp(email,password)
     if(userLogged){
       localStorage.setItem("user",JSON.stringify(userLogged))
-      window.alert("Bienvenido")
+      window.alert("Bienvenido " + userLogged.nombres + " "+userLogged.apellidos)
       if(userLogged.primerRegistro===0){
         window.location.href = '/restart'
       }

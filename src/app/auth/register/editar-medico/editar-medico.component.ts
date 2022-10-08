@@ -54,6 +54,7 @@ export class EditarMedicoComponent implements OnInit {
     fecNacimiento : new Date(0), 
     distrito : '',
     primerRegistro : 0,
+    status : true,
   }
   tipoDocumentos = ['DNI', 'Carnet de Extranjería', 'Pasaporte'];
   tipoGeneros = ['Masculino'];
@@ -111,7 +112,8 @@ export class EditarMedicoComponent implements OnInit {
       email: this.medicoId,
       password: this.editMedicoForm.value.password,
       rolCode: this.editMedicoForm.value.rolCode,
-      numeroColegiatura: this.editMedicoForm.value.numeroColegiatura
+      numeroColegiatura: this.editMedicoForm.value.numeroColegiatura,
+      status : true,
     }
   
   
@@ -119,7 +121,7 @@ export class EditarMedicoComponent implements OnInit {
     const error = this.validarCamposPaciente(editadoMedico)
     if(error) return window.alert(error)
     if(await actualizarMedicoDb(editadoMedico)){
-      window.alert("Se guardaron los cambios del paciente!")
+      window.alert("Se actualizaron los datos del médico")
       this.router.navigate(['/directorio'])
     }else{
       window.alert("Ocurrió un error al actualizar médico")

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserModel } from 'src/firebase/database/users';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   constructor() { }
-
+  public role:number;
+  user : UserModel
   ngOnInit(): void {
-    
+    this.user = JSON.parse(localStorage.getItem("user")||"{}") as UserModel
+    if(this.user){
+      this.role = this.user.rolCode
+    }
   }
 
 }

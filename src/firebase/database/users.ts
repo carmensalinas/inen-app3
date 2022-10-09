@@ -149,8 +149,6 @@ export const actualizarMedicoDb = async(medico: UserModel)=>{
   try{
     const medicoRef = doc(getDB(),"users", medico.email!);
     const updated = await updateDoc(medicoRef, {
-      // email: medico.email,
-      // password: medico.password,
       nombres: medico.nombres || "",
       apellidos: medico.apellidos || "",
       rolCode: medico.rolCode || 0,

@@ -7,6 +7,6 @@
         <div class="intro-heading text-uppercase">
             <span style="-webkit-text-stroke: 1px rgb(57, 108, 201); color:rgb(85, 144, 255)">&nbsp;ProstatApp</span>
         </div>
-        <a class="btn btn-secondary border-dark btn-xl text-uppercase js-scroll-trigger" role="button" href="login" style="background-color: rgb(85, 144, 255);border:none;">Ingresar</a></div>
+        <a *ngIf="role!=0 && role!=1 && role!=2 && role!=3"  class="btn btn-secondary border-dark btn-xl text-uppercase js-scroll-trigger" role="button" href="login" style="background-color: rgb(85, 144, 255);border:none;">Ingresar</a></div>
     </div>
 </header>

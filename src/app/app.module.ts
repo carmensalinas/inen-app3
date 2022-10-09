@@ -38,6 +38,7 @@ import {MatListModule} from '@angular/material/list';
 import { RestartComponent } from './auth/restart/restart.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
 
 
 const modules = [
@@ -83,7 +84,7 @@ const modules = [
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase),
     modules,
-
+    MdbDropdownModule
    
   ],
   exports: [

@@ -73,12 +73,15 @@ export class EditarMedicoComponent implements OnInit {
   @ViewChild('imageUser') inputImageUser: ElementRef;
   uploadPercent!: Observable<any>;
   urlImage:Observable<string>;
-  
+  user : UserModel
+  public role:number;
+
   async ngOnInit(){
     this.medico = await obtenerMedicoDb(this.medicoId)
-    const user = localStorage.getItem("user")
-    if(user){
-      switch (JSON.parse(user).rolCode) {
+    this.user = JSON.parse(localStorage.getItem("user")||"{}") as UserModel
+    if(this.user){
+      this.role = this.medico.rolCode
+      switch (this.user.rolCode) {
         case 0:
           this.roleToManage = "Jefe de radiologos"
           this.userRolCode = 1

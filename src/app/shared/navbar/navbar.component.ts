@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
     const user = localStorage.getItem("user")
     if(user){
       this.role = JSON.parse(user).rolCode
-      console.log(this.role);
+
       switch (this.role) {
         case 0:
           this.roleToManage = "Jefes"

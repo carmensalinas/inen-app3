@@ -6,7 +6,7 @@ import { finalize } from 'rxjs/operators';
 import { FileItem } from '../pages/detallePaciente/models/file-item';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-firebase.initializeApp(environment.firebaseConfig)
+
 
 
 @Injectable()

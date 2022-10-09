@@ -2,8 +2,10 @@
     <div class="row">
         <div class="col-2">
                 <div style="background:white; font-size: 24px; font-weight: bold;">
-                    <span>Editar Perfil</span>
-                    <p></p>
+                    <span>Editar Médico</span>
+                    <p><br>
+                        <img class="img-fluid" style="height: 320px; width: 320px" src="{{medico.fotoPerfil}}">
+                    </p>
                 </div>
         </div>
         <div class="col-10">
@@ -80,29 +82,28 @@
                                 <input type="email" class="form-control" formControlName="email" id="email" name="email" placeholder="@" [(ngModel)]="medico.email">
                             </div>
                             <div class="col-md-4">
-                                <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" name="password" formControlName="password" id="password" placeholder="Ingrese contraseña" class="form-control" [(ngModel)]="medico.password">
-                            </div>
-                            <div class="col-md-4">
                                 <label class="form-group">Distrito</label>
                                     <select formControlName="distrito" class="form-control" id="distrito" aria-label="Default select example">
                                         <option selected value="">{{medico.distrito}}</option>
                                         <option  *ngFor ="let distrito of distritos" [value]="distrito"> {{distrito}}</option>
                                     </select>   
-                                
                             </div>
+                            
+                            <div class="col-md-4">
+                                    
+                                </div>
                         </div>
                         <div class="input-group mb-3">
-                            <div class="col-md-4">
-                                
-                            </div>
-                            <div class="col-md-4">
-                                <label for="confirmarPassword" class="form-label">Confirmar Contraseña</label>
-                                <input type="password" name="confirmarPassword" formControlName="confirmarPassword" id="confirmarPassword" placeholder="Repita su contraseña" class="form-control" [(ngModel)]="medico.password">
-                            </div>
+                            
                             <div class="form-group" class="col-md-4">
                                 <label for="fotoPerfil" class="form-label">Subir Foto de Perfil</label>
                                 <input type="file" id="fotoPerfil" (change)="onFileChange($event)">
+                            </div>
+                            <div class="col-md-4">
+                            </div>
+                            
+                            <div class="col-md-4">
+                                
                             </div>
                         </div>
 
@@ -118,16 +119,14 @@
                             </div>
                             <div class="col-md-2">
                                 <input #imageUser type="hidden" [value]="urlImage | async">
-                                <button *ngIf="urlImage | async; else btnDisabled" type="submit" class="btn btn-success">Registrar</button>
-                                <ng-template #btnDisabled>
-                                    <button type="submit" disabled=true class="btn btn-lg btn-secondary btn-block">Register</button>
-                                  </ng-template>
+                                <button type="submit" (click) = "actualizarMedicos()" class="btn btn-success">Registrar</button>
+                             
                             </div>
                             <div class="col-md-2">
 
                             </div>
                             <div class="col-md-2">
-                                <button type="submit" class="btn btn-danger">Cancelar</button>
+                                <button type="submit" (click) = "cancelar()"class="btn btn-danger">Cancelar</button>
                             </div>
                             <div class="col-md-3">
 

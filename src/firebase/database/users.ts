@@ -136,7 +136,7 @@ export const actualizarStatusMedicoDb = async(medico: UserModel)=>{
   try{
     const medicoRef = doc(getDB(),"users", medico.email!);
     const updated = await updateDoc(medicoRef, {
-      status :medico.status|| "",
+      status :medico.status|| true,
     })
 
   }catch (error) {
@@ -149,7 +149,24 @@ export const actualizarMedicoDb = async(medico: UserModel)=>{
   try{
     const medicoRef = doc(getDB(),"users", medico.email!);
     const updated = await updateDoc(medicoRef, {
-      status :medico.status|| "",
+      // email: medico.email,
+      // password: medico.password,
+      nombres: medico.nombres || "",
+      apellidos: medico.apellidos || "",
+      rolCode: medico.rolCode || 0,
+      numeroColegiatura : medico.numeroColegiatura || 0,
+      tipoDocumento: medico.tipoDocumento || "",
+      numDocumento : medico.numDocumento || 0,
+      edad : medico.edad || 0,
+      tipoGenero : medico.tipoGenero || "",
+      telfijo : medico.telfijo || 0,
+      telcel : medico.telcel || "",
+      direccion : medico.direccion || "",
+      fecNacimiento : medico.fecNacimiento || new Date(0),
+      distrito : medico.distrito || "",
+      fotoPerfil: medico.fotoPerfil || "",
+      primerRegistro : medico.primerRegistro || 0,
+      status : medico.status || true,
     })
 
   }catch (error) {

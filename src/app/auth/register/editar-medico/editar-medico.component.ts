@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { finalize, Observable } from 'rxjs';
 import { StorageService } from 'src/app/services/storage.service';
-import { actualizarMedicoDb, getUser, obtenerMedicoDb, UserModel } from 'src/firebase/database/users';
+import { actualizarMedicoDb, obtenerMedicoDb, UserModel } from 'src/firebase/database/users';
 
 @Component({
   selector: 'app-editar-medico',
@@ -57,7 +57,7 @@ export class EditarMedicoComponent implements OnInit {
     status : true,
   }
   tipoDocumentos = ['DNI', 'Carnet de Extranjería', 'Pasaporte'];
-  tipoGeneros = ['Masculino'];
+  tipoGeneros = ['Masculino', 'Femenino'];
   distritos = ['Cercado de Lima', 'Breña', 'Miraflores', 'San Borja', 'Ventanilla'];
   esJefe: boolean = false;
   radiologos : UserModel[] = [];
@@ -100,23 +100,24 @@ export class EditarMedicoComponent implements OnInit {
     let editadoMedico:UserModel={
       apellidos: this.editMedicoForm.value.apellidos,
       nombres: this.editMedicoForm.value.nombres,
-      tipoDocumento: this.editMedicoForm.value.tipoDocumento,
+      tipoDocumento: this.editMedicoForm.value.tipoDocumento || this.medico.tipoDocumento,
       numDocumento : this.editMedicoForm.value.numDocumento,
       edad : this.editMedicoForm.value.edad,
-      tipoGenero : this.editMedicoForm.value.tipoGenero,
+      tipoGenero : this.editMedicoForm.value.tipoGenero || this.medico.tipoGenero,
       telfijo : this.editMedicoForm.value.telfijo, 
       telcel : this.editMedicoForm.value.telcel,
       direccion : this.editMedicoForm.value.direccion,
       fecNacimiento : this.editMedicoForm.value.fecNacimiento,
-      distrito : this.editMedicoForm.value.distrito,
+      distrito : this.editMedicoForm.value.distrito || this.medico.distrito,
       email: this.medicoId,
-      password: this.editMedicoForm.value.password,
-      rolCode: this.editMedicoForm.value.rolCode,
+      password: this.medico.password,
+      rolCode: this.medico.rolCode,
       numeroColegiatura: this.editMedicoForm.value.numeroColegiatura,
-      status : true,
+      fotoPerfil : this.inputImageUser.nativeElement.value || this.medico.fotoPerfil,
+      status : this.medico.status,
     }
   
-  
+  console.log(editadoMedico);
     
     const error = this.validarCamposPaciente(editadoMedico)
     if(error) return window.alert(error)

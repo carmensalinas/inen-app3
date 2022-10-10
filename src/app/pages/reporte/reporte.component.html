@@ -1,0 +1,51 @@
+<div class="" style="padding-top: 20px">
+    <div style="background:white; font-size: 24px; font-weight: bold; text-align: center;">
+        <span>
+            <br><br>
+            Detallar Reporte de Paciente : {{paciente.nombres}} {{paciente.apellidos}}
+        </span>
+        <p></p>
+    </div>
+    <div class="row">
+        <div class="col-10">
+            <form class="row">
+                <div class="container">
+                    <form [formGroup]="editReporteForm">
+                        <div class="input-group mb-4" style="text-align: center;" >
+                            <div class="col-md-2">
+
+                            </div>
+                            <div class="col-md-10">
+                                <!-- <label for="apellidos" class="form-group">Detallar reporte:</label> -->
+                                <textarea  type="textarea" rows="17" cols="50" class="form-control" 
+                                    formControlName="apellidos" id="apellidos" name="apellidos" 
+                                    [(ngModel)]="reporte.apellidos">
+                                </textarea>
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-12">
+                            <div class="col-md-4">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-success" (click) = "actualizarReporte()">Guardar</button>
+                            </div>
+                            <div class="col-md-4">
+
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-danger" (click) = "cancelar()">Cancelar</button>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                    </form>
+                    <script>
+                        document.f1.f1t1.value = 30
+                      </script>
+                    <p style="height: 20px;"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

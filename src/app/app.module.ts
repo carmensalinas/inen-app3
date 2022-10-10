@@ -39,6 +39,7 @@ import { RestartComponent } from './auth/restart/restart.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
+import { ReporteComponent } from './pages/reporte/reporte.component';
 
 
 const modules = [
@@ -62,7 +63,8 @@ const modules = [
     EditarHistorialComponent,
     NavbarComponent,
     RestartComponent,
-    FilterPipe
+    FilterPipe,
+    ReporteComponent,
   ],
   imports: [
     BrowserModule,

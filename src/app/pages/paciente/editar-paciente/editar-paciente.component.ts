@@ -90,34 +90,73 @@ export class EditarPacienteComponent implements OnInit {
     this.radiologo = await getUser(this.paciente.radiologo_id)
   }
   
+
+  editadoPaciente:PacienteModel
+  respuesta:boolean = false
   async actualizarPacientes(){
-    let editadoPaciente:PacienteModel={
+    this.editadoPaciente={
       apellidos: this.editPacientesForm.value.apellidos,
       nombres: this.editPacientesForm.value.nombres,
-      tipoDocumento: this.editPacientesForm.value.tipoDocumento,
+      tipoDocumento: this.editPacientesForm.value.tipoDocumento || this.paciente.tipoDocumento,
       numDocumento : this.editPacientesForm.value.numDocumento,
       edad : this.editPacientesForm.value.edad,
-      tipoGenero : this.editPacientesForm.value.tipoGenero,
+      tipoGenero : this.editPacientesForm.value.tipoGenero || this.paciente.tipoGenero,
       telfijo : this.editPacientesForm.value.telfijo, 
       telcel : this.editPacientesForm.value.telcel,
       direccion : this.editPacientesForm.value.direccion,
       fecNacimiento : this.editPacientesForm.value.fecNacimiento,
-      distrito : this.editPacientesForm.value.distrito,
-      radiologo_id: this.editPacientesForm.value.radiologo_id,
+      distrito : this.editPacientesForm.value.distrito || this.paciente.distrito,
+      radiologo_id: this.editPacientesForm.value.radiologo_id || this.paciente.radiologo_id,
       id: this.paciente.id
     }
   
-  
+    this.respuesta = await this.validarPacienteActualizado(this.editadoPaciente)
 
-    const error = this.validarCamposPaciente(editadoPaciente)
+    const error = this.validarCamposPaciente(this.editadoPaciente)
     if(error) return window.alert(error)
-    if(await actualizarPacienteDb(editadoPaciente)){
-      window.alert("Se guardaron los cambios del paciente!")
-      this.router.navigate(['/lista-pacientes'])
+    if(await actualizarPacienteDb(this.editadoPaciente)){
+      if(this.respuesta){
+        window.alert("No se modificó ningun dato del usuario")
+        this.router.navigate(['/lista-pacientes'])
+      }else{
+        window.alert("Se actualizaron los datos del paciente!")
+        this.router.navigate(['/lista-pacientes'])
+      }
     }else{
       window.alert("Ocurrió un error al crear el paciente")
     }
 
+    
+
+  }
+
+  async validarPacienteActualizado(paciente:PacienteModel):Promise<boolean>{
+    if(this.paciente.apellidos==paciente.apellidos){
+      if(this.paciente.nombres==paciente.nombres){
+        if(this.paciente.tipoDocumento==paciente.tipoDocumento){
+          if(this.paciente.numDocumento==paciente.numDocumento){
+            if(this.paciente.edad==paciente.edad){
+              if(this.paciente.tipoGenero==paciente.tipoGenero){
+                if(this.paciente.telfijo==paciente.telfijo){
+                  if(this.paciente.telcel==paciente.telcel){
+                    if(this.paciente.direccion==paciente.direccion){
+                      if(this.paciente.fecNacimiento==paciente.fecNacimiento){
+                        if(this.paciente.distrito==paciente.distrito){
+                          if(this.paciente.radiologo_id==paciente.radiologo_id){
+                            return true;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return false;
   }
 
   async cancelar(){

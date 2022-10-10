@@ -1,52 +1,65 @@
 <div class="container" style="padding-top: 20px; padding-bottom: 300px;">
-    <mat-toolbar>
-       <span>Lista de Pacientes Registrados</span>
-       <p></p>
-    </mat-toolbar>
-     
-  <div class="input-group rounded col-4 float-right" >
-    <input type="search" class="form-control rounded" name="filterPaciente" placeholder="Buscar..." aria-label="Search" aria-describedby="search-addon" [(ngModel)]="filterPaciente">
-      <span class="input-group-text border-0" id="search-addon">
-        <i class="fa fa-search"></i>
-      </span>
-      <br>
-  </div>
+  <mat-toolbar>
+     <span>Lista de Pacientes Registrados</span>
+     <p></p>
+  </mat-toolbar>
    
-  <div class="table-responsive table-striped mr-3" style="border-radius: 10px;">
+<div class="input-group rounded col-4 float-right" >
+  <input type="search" class="form-control rounded" name="filterPaciente" placeholder="Buscar..." aria-label="Search" aria-describedby="search-addon" [(ngModel)]="filterPaciente">
+    <span class="input-group-text border-0" id="search-addon">
+      <i class="fa fa-search"></i>
+    </span>
     <br>
-    <table class="table" style="margin:0px;">
-      <thead style="background-color: rgba(14, 132, 251, 0.75);color: rgb(249, 247, 247);">
-          <tr>
-            <th class="align-middle"><strong>Nombres y Apellidos</strong><br></th>
-            <th class="align-middle"><strong>Edad</strong><br></th>
-            <th class="align-middle"><strong>Doc. de Identidad</strong><br></th>
-            <th class="align-middle"><strong>Estado</strong><br></th>
-            <th class="align-middle"><strong>Fecha de Nacimiento</strong><br></th>
-            <th class="align-middle"><strong>Registro de Resonancias</strong><br></th>
-            <th class="align-middle"><strong>Reporte General</strong><br></th>
-            <th class="align-middle" style="text-align: center;">Ajustes</th>                
-          </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor=" let paci of pacientes | filter:filterPaciente" >
-          <td class="align-middle">{{paci.nombres}} {{paci.apellidos}}</td>
-          <td class="align-middle">{{paci.edad}}</td>
-          <td class="align-middle">{{paci.numDocumento}}</td>
-          <td class="align-middle">{{paci.numDocumento}}</td>
-          <td class="align-middle">{{paci.fecNacimiento}}</td>
-          <td class="align-middle"><button type="button" [routerLink]="'/detallePaciente/'+ paci.id" class="btn btn-info">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder" viewBox="0 0 16 16">
-              <path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4H2.19zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z"/>
-            </svg> Ingresar</button></td>
-          <td class="align-middle"><button type="button"  class="btn btn-info"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
-              <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
-            </svg> Reporte</button></td>
-          <td class="text-center">
-              <a href="/editar-paciente/{{paci.id}}" class="btn btn-outline-dark"><i class="fa fa-pencil"></i></a>
-              <!-- <a href="#" class="btn btn-outline-danger"><i class="fa fa-remove"></i></a> -->
-          </td> 
-        </tr>
-      </tbody>
-    </table>
-  </div>
 </div>
+ 
+<div class="table-responsive table-striped mr-3" style="border-radius: 10px;">
+  <br>
+  <table class="table" style="margin:0px;">
+    <thead style="background-color:rgba(34, 156, 205, 0.912);color: rgb(249, 247, 247);">
+        <tr>
+          <th class="align-middle"><strong>Nombres y Apellidos</strong><br></th>
+          <th class="align-middle"><strong>Edad</strong><br></th>
+          <th class="align-middle"><strong>Doc. de Identidad</strong><br></th>
+          <th class="align-middle"><strong>Estado</strong><br></th>
+          <th class="align-middle"><strong>Fecha de Nacimiento</strong><br></th>
+          <th class="align-middle"><strong>Registro de Resonancias</strong><br></th>
+          <th class="align-middle"><strong>Reporte General</strong><br></th>
+          <th class="align-middle" style="text-align: center;">Ajustes</th>                
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor=" let paci of pacientes | filter:filterPaciente" >
+        <td class="align-middle">{{paci.nombres}} {{paci.apellidos}}</td>
+        <td class="align-middle">{{paci.edad}}</td>
+        <td class="align-middle">{{paci.numDocumento}}</td>
+        <td class="align-middle">{{paci.numDocumento}}</td>
+        <td class="align-middle">{{paci.fecNacimiento}}</td>
+        <td class="text-center">
+          <a href="/detallePaciente/{{paci.id}}" class="btn btn-info" fill="currentColor" viewBox="0 0 16 16" style="font-weight: bolder; font-size: 16px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder" viewBox="0 0 16 16">
+              <path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4H2.19zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z"/>
+            </svg>Registrar
+          </a>
+        </td>
+        <td class="text-center">
+          <a href="/reporte/{{paci.id}}" class="btn btn-info" style="font-weight: bolder; font-size: 16px;">
+            Reporte
+            <!-- <svg  width="16" height="16" fill="currentColor" class="bi bi-folder" viewBox="0 0 16 16">
+              <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+            </svg> -->
+          </a>
+        </td>
+        <td class="text-center">
+          <a href="/editar-paciente/{{paci.id}}" class="btn btn-info" fill="currentColor" viewBox="0 0 16 16" style="font-weight: bolder; font-size: 16px;">
+            <i class="fa fa-pencil"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+          
+          
+            

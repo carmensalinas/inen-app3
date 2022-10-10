@@ -9,7 +9,7 @@ import { RestartComponent } from './auth/restart/restart.component';
 import { EditarPacienteComponent } from './pages/paciente/editar-paciente/editar-paciente.component';
 import { EditarMedicoComponent } from './auth/register/editar-medico/editar-medico.component';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
-import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
+import { ReporteComponent } from './pages/reporte/reporte.component';
 const routes: Routes = [
   {path: 'directorio', component: DirectorioComponent},
   {path: 'detallePaciente', loadChildren: () => import('./pages/detallePaciente/detallePaciente.module').then((m) => m.DetallePacienteModule)},
@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path:"editar-paciente/:id",component:EditarPacienteComponent},
   { path: 'editar-medico/:id', component:EditarMedicoComponent},
-
+  { path: 'reporte/:id', component:ReporteComponent},
 ];
 
 @NgModule({

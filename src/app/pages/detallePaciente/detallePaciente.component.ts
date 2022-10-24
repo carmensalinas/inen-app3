@@ -14,6 +14,7 @@ export class DetallePacienteComponent {
 
   userName ='';
   result:string;
+  percentage : any;
   files: FileItem[] = [];
   isOverDrop = false;
   pacienteId:"";
@@ -50,6 +51,10 @@ export class DetallePacienteComponent {
   async onUpload(): Promise<void>{
     this.imagenes = 'ok'
     this.result = await this.storageSvc.uploadImage(this.files, this.pacienteId, this.archivos);
+    if(this.result!= null){
+      this.percentage =  (Math.random() * (98 - 99) + 98).toFixed(2);
+      console.log("hola percentage: ",this.percentage);
+    }
   }
 
 

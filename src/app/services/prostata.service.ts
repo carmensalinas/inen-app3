@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class ProstataService {
 
-  private url : string = "http://34.125.127.3:5000/model/predict/";
+  private url : string = "http://34.125.79.231:5000/model/predict/";
   constructor() { }
 
   postProstata(){

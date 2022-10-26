@@ -64,10 +64,10 @@
   </div>
 </div>
 
-<div class="card" style="padding-top: 13px; padding-bottom: 20px;">
+<div *ngIf="files.length>0" class="card" style="padding-top: 13px; padding-bottom: 20px;">
   <div class="row">
-    <div class="col-md-5 mt-5">
-      <div class="card">
+    <div class="col-md-4 mt-5">
+      <div  class="card">
         <div class="card-header">
           <h4>Imágenes Subidas</h4>
         </div>
@@ -81,16 +81,52 @@
         </div>
       </div>
     </div>
-    <div class="col-md-7 mt-5">
+    <div class="col-md-4 mt-5">
       <div *ngIf="imagenes" class="card">
         <div class="card-header">
           <h4>Evaluación</h4>
         </div>
         <div class="card-body">
-          <div class="col-md-8 mt-5">
+          <div class="col-md-12 mt-5">
               <img *ngIf="!result && files[0]?.downloadURL" src="https://c.tenor.com/XK37GfbV0g8AAAAC/loading-cargando.gif" width="190" height="150"/>
               <img *ngIf="result" src="{{result}}" width="190" height="150" alt="result"/>
-              <td *ngIf="result"  style="height: 15px; font-weight: bold;">Porcentaje de Segmentación: {{ percentage }} %</td>
+              <td *ngIf="result"  style="height: 15px; font-weight: bold;">Porcentaje de precisión de la Segmentación: {{ percentage }} %</td>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mt-5">
+      <div *ngIf="result" class="card">
+        <div class="card-header">
+          <h4>Reporte Médico</h4>
+        </div>
+        <div class="card-body">
+          <div class="col-md-12 mt-5"> 
+              <form [formGroup]="editReporteForm">
+                <div class="input-group mb-4" style="text-align: center;" >
+                    <div class="col-md-12">
+                        <textarea  type="textarea" rows="10" cols="30" class="form-control" 
+                            formControlName="detalle" id="detalle" name="detalle" 
+                            [(ngModel)]="reporte.detalle">
+                        </textarea>
+                    </div>
+                </div>
+                <div class="input-group mb-12">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-success" (click) = "actualizarReporte()">Guardar</button>
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-danger" (click) = "cancelar()">Cancelar</button>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+              </form>
           </div>
         </div>
       </div>

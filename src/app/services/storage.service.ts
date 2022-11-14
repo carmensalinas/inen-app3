@@ -49,7 +49,7 @@ export class StorageService {
     }
     await new Promise(resolve=>setTimeout(resolve,5000))
     return await new Promise((resolve,reject)=>{
-      this.http.post<any>(`http://34.125.79.231:5000/model/predict/`, this.imagenesProstata, requestOptions)
+      this.http.post<any>(`http://34.125.158.112:5000/model/predict/`, this.imagenesProstata, requestOptions)
           .subscribe(res=>{
             let reader = new FileReader()
             reader.readAsDataURL(res)

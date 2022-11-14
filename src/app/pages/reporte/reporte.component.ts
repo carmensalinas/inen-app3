@@ -25,6 +25,7 @@ export class ReporteComponent implements OnInit {
     fecNacimiento : new Date(0), 
     distrito : "",
     radiologo_id: "",
+
   }
 
   editReporteForm = new FormGroup({
@@ -50,7 +51,14 @@ export class ReporteComponent implements OnInit {
     this.paciente = await obtenerPacienteDb(this.pacienteId),
     this.reporte = await obtenerReporteDb(this.pacienteId),
     console.log(this.reporte);
-    this.result = await obtenerResultDb(this.pacienteId)
+    
+
+    if(await obtenerResultDb(this.pacienteId)){
+      this.result = await obtenerResultDb(this.pacienteId)
+    }else{
+      window.alert("El paciente no tiene un reporte generado aún.")
+      this.router.navigate(['/lista-pacientes'])
+    }
   }
 
 

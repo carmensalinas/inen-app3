@@ -136,7 +136,7 @@ export const actualizarStatusMedicoDb = async(medico: UserModel)=>{
   try{
     const medicoRef = doc(getDB(),"users", medico.email!);
     const updated = await updateDoc(medicoRef, {
-      status :medico.status|| true,
+      status :medico.status|| false,
     })
 
   }catch (error) {

@@ -74,8 +74,9 @@
         <div class="card-body">
           <div *ngFor="let file of files" class="col-md-8 mt-5">
             <div *ngIf="file.downloadURL | async as downloadURL">
-                <img src={{downloadURL}} width="190" height="150"/>
-                {{file.name}}
+                <!--<img src={{downloadURL}} width="190" height="150"/> {{file.name}}-->
+                <img src="https://firebasestorage.googleapis.com/v0/b/inen-app.appspot.com/o/Radiograf%C3%ADas%2FiwTd001lcKqQ9Ih9HCvb%2F1663799616359-Case00.gif?alt=media&token=009e4fd3-51b7-40b0-a901-2d7a10fd5e2e" width="190" height="150"/>
+                
           </div>
         </div>
         </div>

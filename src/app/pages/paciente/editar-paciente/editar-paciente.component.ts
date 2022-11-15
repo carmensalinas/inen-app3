@@ -116,10 +116,10 @@ export class EditarPacienteComponent implements OnInit {
     if(error) return window.alert(error)
     if(await actualizarPacienteDb(this.editadoPaciente)){
       if(this.respuesta){
-        window.alert("No se modificó ningun dato del usuario")
+        window.alert("Se actualizaron los datos del paciente!")
         this.router.navigate(['/lista-pacientes'])
       }else{
-        window.alert("Se actualizaron los datos del paciente!")
+        window.alert("No se modificó ningun dato del usuario")
         this.router.navigate(['/lista-pacientes'])
       }
     }else{

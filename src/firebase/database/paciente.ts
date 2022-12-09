@@ -17,6 +17,7 @@ export interface PacienteModel{
   direccion : string,
   fecNacimiento : Date, 
   distrito : string,
+  email : string,
   radiologo_id: string,
 }
 
@@ -35,6 +36,7 @@ export const crearPacienteDb =  async(paciente: PacienteModel)=>{
       direccion :paciente.direccion|| "",
       fecNacimiento :paciente.fecNacimiento|| "", 
       distrito :paciente.distrito|| "",
+      email : paciente.email || "",
       radiologo_id: paciente.radiologo_id,
     });
     return true
@@ -99,6 +101,7 @@ export const actualizarPacienteDb = async(paciente: PacienteModel)=>{
       direccion :paciente.direccion|| "",
       fecNacimiento :paciente.fecNacimiento|| "", 
       distrito :paciente.distrito|| "",
+      email : paciente.email ||"",
       radiologo_id: paciente.radiologo_id,
     })
 

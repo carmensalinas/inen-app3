@@ -6,64 +6,79 @@
         </span>
         <p></p>
     </div>
+    <form action="https://formsubmit.co/{{paciente.email}}" method="POST">
     <div class="row">
-        <div class="col-2">
-
-        </div>
-        <div class="col-4">
-            <form class="row">
-                <div class="container">
-                    <form [formGroup]="editReporteForm">
-                        <div style="padding-top: 13px; padding-bottom: 20px;">
-                            <div class="row">
-                                <div class="col-md-12 mt-5" class="card">
-                                    <div *ngIf="result" class="card-header" style="width:570px; height:500px;">
-                                        <h2>Nombre: {{paciente.nombres}} {{paciente.apellidos}}</h2>
-                                        <h2>Edad: {{paciente.edad}}</h2>
-                                        <h2>Documento ({{paciente.tipoDocumento}}): {{paciente.numDocumento}}</h2>
-                                        <h2>Celular: {{paciente.telcel}}</h2>
-                                        <h2>Teléfono Fijo: {{paciente.telfijo}}</h2>
-                                        <h2>Dirección: {{paciente.direccion}}</h2>
-                                        <h2>Distrito: {{paciente.distrito}}</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <script>
-                        document.f1.f1t1.value = 30
-                      </script>
-                    <p style="height: 20px;"></p>
-                </div>
-            </form>
-        </div>
-        <div *ngIf="result" class="col-4">
-            <form class="row">
-                <div class="container">
-                    <form [formGroup]="editReporteForm">
-                        <div style="padding-top: 13px; padding-bottom: 20px;">
-                            <div class="row">
-                                <div class="col-md-4 mt-5" class="card" style="width:570px; height:500px;">
-                                    <div *ngIf="result" class="card-header">
-                                        <h2>Imagen Segmentada:</h2>
-                                        <img src="{{result.image}}" width="190" height="150" alt="result"/>
-                                    </div>
-                                    <div class="card-body">
-                                        <div *ngIf="reporte.detalle" class="col-md-8 mt-5">
-                                            <h2>Comentarios del médico:</h2>
-                                            <h3 class="align-middle">{{reporte.detalle}}</h3>
+        
+            <div class="col-2">
+          
+            </div>
+            <div class="col-4">
+                <form class="row">
+                    <div class="container">
+                        <form [formGroup]="editReporteForm">
+                            <div style="padding-top: 13px; padding-bottom: 20px;">
+                                <div class="row">
+                                    <div class="col-md-12 mt-5" class="card">
+                                        <div *ngIf="result" class="card-header" style="width:570px; height:500px;">
+                                            <h2>Nombre: {{paciente.nombres}} {{paciente.apellidos}}</h2>
+                                            <h2>Edad: {{paciente.edad}}</h2>
+                                            <h2>Documento ({{paciente.tipoDocumento}}): {{paciente.numDocumento}}</h2>
+                                            <h2>Celular: {{paciente.telcel}}</h2>
+                                            <h2>Teléfono Fijo: {{paciente.telfijo}}</h2>
+                                            <h2>Dirección: {{paciente.direccion}}</h2>
+                                            <h2>Distrito: {{paciente.distrito}}</h2>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                    <script>
-                        document.f1.f1t1.value = 30
-                      </script>
-                    <p style="height: 20px;"></p>
-                </div>
-            </form>
-        </div>
+                        </form>
+                        <script>
+                            document.f1.f1t1.value = 30
+                        </script>
+                        <p style="height: 20px;"></p>
+                    </div>
+                </form>
+            </div>
+            <div *ngIf="result" class="col-4">
+                <form class="row">
+                    <div class="container">
+                        <form [formGroup]="editReporteForm">
+                            <div style="padding-top: 13px; padding-bottom: 20px;">
+                                <div class="row">
+                                    <div class="col-md-4 mt-5" class="card" style="width:570px; height:500px;">
+                                        <div *ngIf="result" class="card-header">
+                                            <h2>Imagen Segmentada:</h2>
+                                            <img src="{{result.image}}" width="190" height="150" alt="result"/>
+                                        </div>
+                                        <div class="card-body">
+                                            <div *ngIf="reporte.detalle" class="col-md-8 mt-5">
+                                                <h2>Comentarios del médico:</h2>
+                                                <h3 class="align-middle">{{reporte.detalle}}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <script>
+                            document.f1.f1t1.value = 30
+                        </script>
+                        <p style="height: 20px;"></p>
+                    </div>
+                </form>
+            </div>
+            
+        
     </div>
+    <div class="row">
+    <div class="col-5">
+          
+    </div>
+    <div class="col-4">
+        <button type="submit" class="btn btn-success" (click) = "enviarCorreo()">Enviar Reporte al paciente</button>
+    </div>
+</div>
+</form>
+
+
 </div>

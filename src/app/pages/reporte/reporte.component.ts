@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StorageService } from 'src/app/services/storage.service';
 import { obtenerPacienteDb, PacienteModel } from 'src/firebase/database/paciente';
 import { obtenerReporteDb, obtenerResultDb, ReporteModel, ResultModel } from 'src/firebase/database/reporte';
+import { HttpClient } from '@angular/common/http';
+import { obtenerMedicoDb,UserModel } from 'src/firebase/database/users';
 
 @Component({
   selector: 'app-reporte',
@@ -24,6 +25,7 @@ export class ReporteComponent implements OnInit {
     direccion : "",
     fecNacimiento : new Date(0), 
     distrito : "",
+    email : "",
     radiologo_id: "",
 
   }
@@ -41,7 +43,28 @@ export class ReporteComponent implements OnInit {
     paciente_id:""
   }
 
-  constructor(route: ActivatedRoute, private router:Router) {
+  medico:UserModel = {
+    email: '',
+    password:'',
+    nombres: '',
+    apellidos: '',
+    rolCode:0,
+    numeroColegiatura : 0,
+    tipoDocumento: '',
+    numDocumento : 0,
+    edad : 0,
+    tipoGenero : '',
+    telfijo : 0, 
+    telcel : '', 
+    direccion : '',
+    fotoPerfil: "",
+    fecNacimiento : new Date(0), 
+    distrito : '',
+    primerRegistro : 0,
+    status : true,
+  }
+
+  constructor(route: ActivatedRoute, private router:Router, private httpclien:HttpClient) {
     route.params.subscribe((params)=>{
       this.pacienteId = params["id"]
     })
@@ -50,6 +73,7 @@ export class ReporteComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.paciente = await obtenerPacienteDb(this.pacienteId),
     this.reporte = await obtenerReporteDb(this.pacienteId),
+    this.medico = await(obtenerMedicoDb(this.paciente.radiologo_id)),
     console.log(this.reporte);
     
 
@@ -62,4 +86,24 @@ export class ReporteComponent implements OnInit {
   }
 
 
+
+  async enviarCorreo(){
+ 
+    let params ={
+      email: this.paciente.email,
+      asunto: 'Reporte médico de ProstatApp',
+      apellidos: this.paciente.apellidos,
+      nombres: this.paciente.nombres,
+      resultado: '\n'+ this.result.image,
+      reporte: '\n'+this.reporte.detalle,
+      radiologo: this.medico.apellidos + " "+this.medico.nombres
+    }
+
+    console.log(params);
+    this.httpclien.post('http://localhost:3000/envio',params).subscribe(resp=>{
+      window.alert("El reporte fue enviado al paciente")
+      this.router.navigate(['/lista-pacientes'])
+    })
+
+  }
 }

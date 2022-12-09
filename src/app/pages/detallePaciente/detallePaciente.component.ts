@@ -27,6 +27,7 @@ export class DetallePacienteComponent {
     direccion : "",
     fecNacimiento : new Date(0), 
     distrito : "",
+    email : "",
     radiologo_id: "",
   }
 

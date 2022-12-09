@@ -27,6 +27,7 @@ export class PacienteComponent{
     distrito :  new FormControl(''),
     confirmarPassword :  new FormControl(''),
     fotoPerfil:  new FormControl(''),
+    email : new FormControl(''),
     radiologo_id: new FormControl('')
   })
 
@@ -57,6 +58,7 @@ export class PacienteComponent{
       direccion : this.registerPacientesForm.value.direccion,
       fecNacimiento : this.registerPacientesForm.value.fecNacimiento,
       distrito : this.registerPacientesForm.value.distrito,
+      email : this.registerPacientesForm.value.email,
       radiologo_id: this.registerPacientesForm.value.radiologo_id
     } 
     const error = this.validarCamposPaciente(nuevoPaciente)

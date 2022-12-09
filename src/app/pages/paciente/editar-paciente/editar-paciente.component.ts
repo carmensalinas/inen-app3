@@ -31,6 +31,7 @@ export class EditarPacienteComponent implements OnInit {
     distrito :  new FormControl(''),
     confirmarPassword :  new FormControl(''),
     fotoPerfil:  new FormControl(''),
+    email : new FormControl(''),
     radiologo_id: new FormControl('')
   })
   pacienteId:"";
@@ -46,6 +47,7 @@ export class EditarPacienteComponent implements OnInit {
     direccion : "",
     fecNacimiento : new Date(0), 
     distrito : "",
+    email : "",
     radiologo_id: "",
   }
 
@@ -87,6 +89,7 @@ export class EditarPacienteComponent implements OnInit {
   async ngOnInit(){
     this.radiologos = await obtenerRadiologosDb()
     this.paciente = await obtenerPacienteDb(this.pacienteId)
+    console.log(this.paciente)
     this.radiologo = await getUser(this.paciente.radiologo_id)
   }
   
@@ -107,6 +110,7 @@ export class EditarPacienteComponent implements OnInit {
       fecNacimiento : this.editPacientesForm.value.fecNacimiento,
       distrito : this.editPacientesForm.value.distrito || this.paciente.distrito,
       radiologo_id: this.editPacientesForm.value.radiologo_id || this.paciente.radiologo_id,
+      email : this.editPacientesForm.value.email,
       id: this.paciente.id
     }
   
@@ -142,8 +146,10 @@ export class EditarPacienteComponent implements OnInit {
                     if(this.paciente.direccion==paciente.direccion){
                       if(this.paciente.fecNacimiento==paciente.fecNacimiento){
                         if(this.paciente.distrito==paciente.distrito){
-                          if(this.paciente.radiologo_id==paciente.radiologo_id){
-                            return true;
+                          if(this.paciente.email==paciente.email){
+                            if(this.paciente.radiologo_id==paciente.radiologo_id){
+                              return true;
+                            }
                           }
                         }
                       }
